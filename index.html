@@ -1,3 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himani Vaghani — AI &amp; Security Engineer</title>
+<meta name="description" content="Portfolio of Himani Vaghani — building AI security tooling, developer tools, and full-stack AI products.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%233C3DF0'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ef;
+    --cream-soft:#fffdf9;
+    --peach-1:#f7c2a6;
+    --peach-2:#f0a382;
+    --peach-3:#e8825d;
+    --charcoal:#332f2b;
+    --muted:#8c8781;
+    --blue:#3f3ff3;
+    --blue-deep:#2323c4;
+    --line: rgba(51,47,43,0.1);
+    --shadow: 0 20px 60px rgba(232,130,93,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Figtree',Arial,sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2','Figtree',Arial,sans-serif;
+    font-weight:700;
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--peach-2);color:#fff;}
+
+  /* background blobs */
+  .bg-blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(0px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .blob-a{
+    width:70vw;height:70vw;max-width:900px;max-height:900px;
+    top:-20vw;left:-15vw;
+    background:radial-gradient(circle at 35% 30%, var(--peach-1), var(--peach-3) 70%);
+    opacity:0.55;
+  }
+  .blob-b{
+    width:45vw;height:45vw;max-width:600px;max-height:600px;
+    bottom:-15vw;right:-10vw;
+    background:radial-gradient(circle at 60% 40%, var(--peach-2), var(--peach-3) 75%);
+    opacity:0.4;
+  }
+
+  section{position:relative;z-index:1;}
+
+  /* nav */
+  .pill-nav{
+    position:fixed;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:50;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(255,253,249,0.75);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(51,47,43,0.08);
+    border-radius:999px;
+    padding:6px;
+    box-shadow:0 12px 40px rgba(51,47,43,0.14);
+  }
+  .pill-nav a{
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--charcoal);
+    transition:background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .pill-nav a:hover{background:rgba(63,63,243,0.08);}
+  .pill-nav .logo{
+    width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--blue);
+    border-radius:11px;
+    color:#fff;font-weight:800;font-size:15px;
+    transform:rotate(-8deg);
+    font-family:'Baloo 2',sans-serif;
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* header row */
+  header.top{
+    padding:34px 0 0;
+    display:flex;justify-content:center;
+  }
+  .brand{
+    font-size:15px;font-weight:700;color:var(--muted);
+    letter-spacing:.02em;
+  }
+  .brand b{color:var(--charcoal);}
+  .brand .dot{color:var(--peach-3);margin:0 2px;}
+
+  /* hero */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 24px 160px;
+  }
+  .eyebrow-row{
+    width:100%;
+    max-width:900px;
+    display:flex;
+    justify-content:space-between;
+    font-size:15px;
+    font-weight:700;
+    color:var(--muted);
+    margin:0 auto 8px;
+  }
+  .eyebrow-row span{max-width:220px;}
+  .eyebrow-row .r{text-align:right;}
+
+  .orb-stage{
+    position:relative;
+    width:min(78vw,560px);
+    height:min(78vw,560px);
+    margin:18px auto 8px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .orb{
+    position:absolute;
+    inset:6%;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:
+      inset 0 -30px 60px rgba(232,130,93,0.35),
+      inset 0 20px 50px rgba(255,255,255,0.35),
+      0 40px 80px rgba(232,130,93,0.25);
+    animation:float 7s ease-in-out infinite;
+  }
+  .orb img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 18%;
+    filter:sepia(0.28) saturate(1.35) brightness(1.02) contrast(0.98);
+  }
+  .orb::before{
+    content:'';
+    position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 30% 22%, rgba(255,255,255,0.55), rgba(255,255,255,0) 40%),
+      radial-gradient(circle at 72% 82%, var(--peach-3), transparent 62%);
+    mix-blend-mode:soft-light;
+    pointer-events:none;
+  }
+  .orb::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(155deg, rgba(239,232,222,0.35) 0%, transparent 40%, rgba(238,180,145,0.45) 100%);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-16px);}
+  }
+  .shape{position:absolute;z-index:2;}
+  .shape.pentagon{
+    width:34px;height:34px;
+    background:var(--blue);
+    clip-path:polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    top:12%;right:4%;
+    animation:float 6s ease-in-out infinite;
+    animation-delay:.5s;
+  }
+  .shape.ring{
+    width:64px;height:64px;
+    border:10px solid var(--peach-2);
+    border-radius:50%;
+    bottom:8%;left:2%;
+    opacity:.8;
+    animation:float 8s ease-in-out infinite;
+  }
+  .shape.dot{
+    width:16px;height:16px;background:var(--blue);
+    border-radius:50%;
+    top:36%;left:-2%;
+  }
+
+  .headline{
+    font-size:clamp(30px,6.4vw,64px);
+    max-width:900px;
+    color:#8f8a83;
+    margin-top:8px;
+  }
+  .headline .hl{
+    background:var(--peach-2);
+    color:#fff;
+    padding:2px 18px;
+    border-radius:999px;
+    display:inline-block;
+  }
+  .headline .hl2{color:var(--peach-3);}
+  .headline strong{color:var(--charcoal);}
+
+  .scroll-cue{
+    margin-top:36px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .scroll-cue .bar{width:1px;height:34px;background:linear-gradient(var(--muted),transparent);}
+
+  /* section heading */
+  .kicker{
+    font-size:13px;font-weight:700;color:var(--peach-3);
+    text-transform:uppercase;letter-spacing:.14em;
+    margin-bottom:14px;
+  }
+  .section-title{font-size:clamp(28px,4.2vw,46px);max-width:720px;}
+
+  /* services */
+  .services{padding:90px 0;}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+    margin-top:56px;
+  }
+  .service-card{
+    background:var(--cream-soft);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:34px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .service-card .num{
+    font-family:'Baloo 2',sans-serif;
+    font-size:14px;font-weight:700;color:var(--peach-3);
+    margin-bottom:14px;
+  }
+  .service-card h3{font-size:22px;margin-bottom:10px;}
+  .service-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.6;}
+
+  /* projects */
+  .projects{padding:70px 0 110px;}
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-top:56px;
+  }
+  .project-card{
+    grid-column:span 1;
+    border-radius:26px;
+    overflow:hidden;
+    background:var(--cream-soft);
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .project-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+  .project-card.wide{grid-column:span 2;}
+  .thumb{
+    height:190px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+    color:#fff;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.02em;
+  }
+  .thumb::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 75% 15%, rgba(255,255,255,.35), transparent 55%);
+  }
+  .thumb span{position:relative;z-index:1;opacity:.9;}
+  .p-body{padding:26px 28px 28px;flex:1;display:flex;flex-direction:column;}
+  .p-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .p-body h3{font-size:20px;}
+  .badge{
+    font-size:11px;font-weight:700;
+    padding:4px 10px;border-radius:999px;
+    background:rgba(63,63,243,0.08);
+    color:var(--blue-deep);
+    white-space:nowrap;
+  }
+  .badge.priv{background:rgba(51,47,43,0.08);color:var(--muted);}
+  .p-body p{color:var(--muted);font-size:14.5px;line-height:1.65;margin:12px 0 18px;flex:1;}
+  .p-foot{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;}
+  .p-foot .lang{color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .lang-dot{width:9px;height:9px;border-radius:50%;background:var(--peach-3);display:inline-block;}
+  .p-foot .link{color:var(--blue);display:flex;align-items:center;gap:6px;}
+  .p-foot .link:hover{text-decoration:underline;}
+
+  /* about */
+  .about{padding:80px 0 110px;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:start;
+    margin-top:44px;
+  }
+  .about-grid p{font-size:18px;line-height:1.75;color:#5c5852;margin:0 0 20px;}
+  .about-grid p strong{color:var(--charcoal);}
+  .stat-card{
+    background:var(--cream-soft);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:18px;
+  }
+  .stat-card .n{font-family:'Baloo 2',sans-serif;font-size:34px;color:var(--peach-3);}
+  .stat-card .l{color:var(--muted);font-size:14px;font-weight:600;margin-top:4px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .tag{
+    font-size:13px;font-weight:600;
+    padding:8px 14px;border-radius:999px;
+    background:rgba(51,47,43,0.06);
+    color:var(--charcoal);
+  }
+
+  /* contact / footer */
+  .contact{
+    padding:110px 0 200px;
+    text-align:center;
+  }
+  .contact h2{font-size:clamp(30px,6vw,58px);max-width:820px;margin:0 auto;}
+  .contact h2 em{font-style:normal;color:var(--peach-3);}
+  .contact .sub{color:var(--muted);font-size:17px;margin:22px auto 0;max-width:520px;}
+  .cta-row{
+    margin-top:42px;
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    padding:16px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+  }
+  .btn.primary{background:var(--charcoal);color:#fff;}
+  .btn.primary:hover{background:var(--peach-3);}
+  .btn.ghost{border:1px solid var(--line);background:var(--cream-soft);}
+  .btn.ghost:hover{border-color:var(--peach-3);color:var(--peach-3);}
+
+  footer{
+    padding:36px 0 130px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  footer .socials{display:flex;gap:22px;}
+  footer .socials a:hover{color:var(--peach-3);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:860px){
+    .service-grid,.about-grid{grid-template-columns:1fr;}
+    .project-grid{grid-template-columns:1fr;}
+    .project-card.wide{grid-column:span 1;}
+    .eyebrow-row{font-size:12px;}
+    .pill-nav a{padding:9px 13px;font-size:13px;}
+    footer{flex-direction:column;gap:16px;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-blob blob-a"></div>
+<div class="bg-blob blob-b"></div>
+
+<nav class="pill-nav">
+  <a href="#about">About</a>
+  <span class="logo">H</span>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<header class="top">
+  <div class="brand"><b>Himani</b><span class="dot">•</span><b>Vaghani</b></div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow-row">
+    <span>AI &amp; Security<br>Tooling Engineer</span>
+    <span class="r">Full-Stack Builder,<br>Independent</span>
+  </div>
+
+  <div class="orb-stage">
+    <div class="shape dot"></div>
+    <div class="orb"><img src="https://github.com/user-attachments/assets/1e35a694-b9e3-4c43-94df-18409e4a908e" alt="Himani Vaghani"></div>
+    <div class="shape pentagon"></div>
+    <div class="shape ring"></div>
+  </div>
+
+  <h1 class="headline">
+    Building tools that <span class="hl">catch</span> what AI misses,
+    and products people <span class="hl2">actually ship.</span>
+  </h1>
+
+  <div class="scroll-cue"><span>SCROLL</span><span class="bar"></span></div>
+</section>
+
+<section class="services reveal" id="services">
+  <div class="wrap">
+    <div class="kicker">What I build</div>
+    <h2 class="section-title">Security-minded engineering for the AI era.</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="num">01</div>
+        <h3>AI Security &amp; Auditing Tools</h3>
+        <p>Static analysis engines and reasoning auditors that catch hallucinated code, missing safeguards, and logical gaps before they ship.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">02</div>
+        <h3>Full-Stack AI Products</h3>
+        <p>End-to-end apps — React/TypeScript frontends, Supabase/Postgres backends, edge functions — built with real auth, billing, and RLS.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">03</div>
+        <h3>Developer Tools &amp; CLIs</h3>
+        <p>Scanners, firewalls, and dashboards designed to slot into a pre-commit hook or a CI pipeline with zero friction.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">04</div>
+        <h3>Voice, Data &amp; ML</h3>
+        <p>Voice emotion classifiers, document Q&amp;A assistants, and applied ML pipelines from dataset to deployed model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects reveal" id="work">
+  <div class="wrap">
+    <div class="kicker">Selected work</div>
+    <h2 class="section-title">Projects from my GitHub, shipped solo.</h2>
+
+    <div class="project-grid">
+
+      <div class="project-card wide">
+        <div class="thumb" style="background:linear-gradient(135deg,#3f3ff3,#7c7cff);"><span>WEBSHIELD</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>WebShield</h3><span class="badge priv">Private</span></div>
+          <p>A passive security posture scanner — checks a domain's HTTP security headers, TLS certificate, and SPF/DMARC records, then turns the result into a plain-English score with ready-to-paste fix snippets. No agent installed, nothing run on the target.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>HTML · MIT</span><span></span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#e8825d,#f7c2a6);"><span>DEPFIREWALL</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>DepFirewall</h3><span class="badge">Public</span></div>
+          <p>Static analysis engine that catches hallucinated imports, missing security middleware, and leaked secrets in TypeScript/JS codebases before they hit CI.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><a class="link" href="https://github.com/Himani51/DepFirewall" target="_blank" rel="noopener">View repo →</a></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#332f2b,#5c5852);"><span>THOUGHT LEAK</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>Thought Leak Auditor</h3><span class="badge">Public</span></div>
+          <p>Enterprise-grade auditor that scores AI-generated answers for logical gaps and hallucination risk through a dual-critic (strict/lenient) engine, then rewrites the answer to close the gaps.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><a class="link" href="https://github.com/Himani51/Thought-Leak-Auditor" target="_blank" rel="noopener">View repo →</a></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#2323c4,#3f3ff3);"><span>BREWCLAUDE</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>BrewClaude</h3><span class="badge priv">Private</span></div>
+          <p>Voice-first AI assistant for Android + iOS on one Capacitor + React codebase — hands-free chat with Claude, on-device memory (SQLite + SQLCipher), and device automation.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#f0a382,#e8825d);"><span>JOBFLOW AI</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>JobFlow AI</h3><span class="badge priv">Private</span></div>
+          <p>A GDPR-compliant, agentic career platform — resume tailoring, auto-apply, and job matching, built on Supabase RLS, HttpOnly auth, and pgcrypto-encrypted PII.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#7c7cff,#f7c2a6);"><span>PROMPT HUB</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>Prompt Hub</h3><span class="badge priv">Private</span></div>
+          <p>A prompt-management app for organizing, testing, and sharing prompts, built with React, TypeScript, and a Supabase backend.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#e8825d,#332f2b);"><span>VOICE MOOD</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>AI Voice Mood Detector</h3><span class="badge">Public</span></div>
+          <p>End-to-end voice emotion classifier — dataset prep, feature extraction, training pipeline, and a Streamlit app that predicts emotion from a .wav upload.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>Python</span><a class="link" href="https://github.com/Himani51/Ai-Voice-Mood-Detector" target="_blank" rel="noopener">View repo →</a></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb" style="background:linear-gradient(135deg,#f7c2a6,#3f3ff3);"><span>DOC Q&amp;A</span></div>
+        <div class="p-body">
+          <div class="p-top"><h3>PDF Q&amp;A Assistant</h3><span class="badge">Public</span></div>
+          <p>A lightweight assistant that lets you ask natural-language questions against any PDF, powered by the OpenAI API.</p>
+          <div class="p-foot"><span class="lang"><i class="lang-dot"></i>Python</span><a class="link" href="https://github.com/Himani51/doc_qa_assistant" target="_blank" rel="noopener">View repo →</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about reveal" id="about">
+  <div class="wrap">
+    <div class="kicker">About</div>
+    <h2 class="section-title">I like software that has to be right, not just ship.</h2>
+    <div class="about-grid">
+      <div>
+        <p>I'm <strong>Himani Vaghani</strong>, an independent engineer who builds at the intersection of <strong>AI and security</strong>. Most of what I ship exists because something else was quietly wrong — an AI hallucinating an import, a backend missing a rate limiter, an answer that sounded confident but wasn't.</p>
+        <p>My projects tend to fall into two buckets: <strong>tools that audit AI output</strong> (DepFirewall, Thought Leak Auditor, WebShield) and <strong>full products built with AI in the loop</strong> (BrewClaude, JobFlow AI, Prompt Hub). Both need the same instinct — care about the craft, and don't trust the happy path.</p>
+        <div class="tags">
+          <span class="tag">TypeScript / React</span>
+          <span class="tag">Python</span>
+          <span class="tag">Supabase / Postgres</span>
+          <span class="tag">Edge Functions</span>
+          <span class="tag">Security Tooling</span>
+          <span class="tag">Applied ML</span>
+        </div>
+      </div>
+      <div>
+        <div class="stat-card"><div class="n">12+</div><div class="l">Repositories shipped solo</div></div>
+        <div class="stat-card"><div class="n">3</div><div class="l">Security &amp; AI-audit tools in production use</div></div>
+        <div class="stat-card"><div class="n">1</div><div class="l">Live SaaS deployed on Vercel + Supabase</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact reveal" id="contact">
+  <div class="wrap">
+    <h2>Let's build something <em>that actually works.</em></h2>
+    <p class="sub">Open to freelance builds, security audits for AI-heavy codebases, and interesting full-stack problems.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:vaghanihimani@gmail.com">Email me →</a>
+      <a class="btn ghost" href="https://github.com/Himani51" target="_blank" rel="noopener">See all repos</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© <span id="year"></span> Himani Vaghani. Built by hand, no template.</span>
+    <div class="socials">
+      <a href="mailto:vaghanihimani@gmail.com">Email</a>
+      <a href="https://github.com/Himani51" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // subtle parallax on the orb shapes following pointer
+  const stage = document.querySelector('.orb-stage');
+  if(stage){
+    document.addEventListener('mousemove', (e)=>{
+      const r = stage.getBoundingClientRect();
+      const cx = r.left + r.width/2;
+      const cy = r.top + r.height/2;
+      const dx = (e.clientX - cx)/r.width;
+      const dy = (e.clientY - cy)/r.height;
+      stage.querySelectorAll('.shape').forEach((s,i)=>{
+        const depth = (i+1)*6;
+        s.style.transform = `translate(${dx*depth}px, ${dy*depth}px)`;
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
 hello from paste test
 line2<!DOCTYPE html>
 <html lang="en">
