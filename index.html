@@ -64,6 +64,10 @@
       margin: 0;
     }
 
+    section {
+      margin: 0;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -154,6 +158,7 @@
       align-items: flex-end;
       justify-content: space-between;
       padding-bottom: 60px;
+      margin: 0;
     }
 
     .hero-image {
@@ -164,6 +169,7 @@
       object-fit: cover;
       object-position: center;
       z-index: 1;
+      display: block;
     }
 
     .hero-overlay {
@@ -244,6 +250,7 @@
       position: relative;
       z-index: 10;
       background: var(--cream);
+      margin: 0;
     }
 
     .intro-content {
@@ -430,7 +437,8 @@
       background: var(--cream);
       overflow: hidden;
       z-index: 10;
-      padding: 100px 60px;
+      padding: 80px 60px;
+      margin: 0;
     }
 
     .gallery-header {
@@ -915,7 +923,9 @@
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <img src="assets/himani-bg.webp" alt="Himani Vaghani" class="hero-image">
+    <video class="hero-image" autoplay muted loop playsinline>
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
@@ -1044,7 +1054,7 @@
   <!-- Dark Photo Section -->
   <section class="dark-photo" id="dark-section">
     <div class="dark-photo-bg">
-      <img src="assets/himani-bg.webp" alt="Himani Vaghani" class="dark-photo-image">
+      <div class="dark-photo-image" style="background: linear-gradient(135deg, rgba(90, 74, 64, 0.8) 0%, rgba(42, 31, 24, 0.9) 100%), url('assets/himani-bg.webp'); background-size: cover; background-position: center;"></div>
       <div class="dark-photo-overlay"></div>
 
       <div class="dark-content">
