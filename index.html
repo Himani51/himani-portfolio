@@ -725,13 +725,14 @@
     /* ===== CTA SECTION ===== */
     section.cta {
       position: relative;
-      min-height: 100vh;
+      min-height: 90vh;
       background: var(--peach-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 60px;
+      padding: 40px 60px;
       z-index: 10;
+      margin: 0;
     }
 
     .cta-panel {
@@ -762,14 +763,15 @@
     /* ===== FOOTER ===== */
     section.footer {
       position: relative;
-      min-height: 150vh;
+      min-height: 80vh;
       background: linear-gradient(135deg, #3a2f28 0%, #1a1512 100%);
-      overflow: hidden;
+      overflow: visible;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 60px;
+      padding: 60px;
+      margin: 0;
     }
 
     .footer-content {
@@ -804,10 +806,16 @@
 
     .footer-links a {
       transition: opacity 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 20;
+      display: inline-block;
+      padding: 8px 16px;
     }
 
     .footer-links a:hover {
       opacity: 0.7;
+      text-decoration: underline;
     }
 
     /* ===== RESPONSIVE ===== */
