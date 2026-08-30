@@ -330,69 +330,9 @@
   .no-motion .footer-media{position:relative;height:50vh;}
   .no-motion .chrome{opacity:1;pointer-events:auto;}
 
-  /* intro overlay */
-  body.intro-lock{overflow:hidden;height:100vh;}
-  #intro{
-    position:fixed;inset:0;z-index:999;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:18px;
-    background:var(--cream);
-    animation:intro-out .7s cubic-bezier(.65,0,.35,1) 1.7s forwards;
-  }
-  .intro-mark{
-    width:72px;height:72px;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--blue);
-    border-radius:20px;
-    color:#fff;font-weight:800;font-size:32px;
-    font-family:'Baloo 2','Figtree',sans-serif;
-    animation:intro-pop .9s cubic-bezier(.34,1.56,.64,1) both;
-  }
-  .intro-name{
-    font-family:'Baloo 2','Figtree',sans-serif;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    color:var(--muted);
-    opacity:0;
-    animation:intro-fade .6s ease .5s forwards;
-  }
-  .intro-bar{
-    width:120px;height:3px;
-    border-radius:999px;
-    background:rgba(51,47,43,0.1);
-    overflow:hidden;
-  }
-  .intro-bar span{
-    display:block;height:100%;width:0%;
-    background:var(--peach-3);
-    border-radius:999px;
-    animation:intro-load 1s ease .15s forwards;
-  }
-  @keyframes intro-pop{
-    0%{transform:scale(.4) rotate(-25deg);opacity:0;}
-    60%{transform:scale(1.08) rotate(4deg);opacity:1;}
-    100%{transform:scale(1) rotate(-8deg);opacity:1;}
-  }
-  @keyframes intro-fade{to{opacity:1;}}
-  @keyframes intro-load{to{width:100%;}}
-  @keyframes intro-out{
-    to{opacity:0;transform:translateY(-6%);pointer-events:none;visibility:hidden;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    #intro{animation-duration:.3s;animation-delay:.4s;}
-    .intro-mark,.intro-name,.intro-bar span{animation:none;opacity:1;width:100%;transform:scale(1) rotate(-8deg);}
-  }
 </style>
 </head>
 <body>
-
-<div id="intro" aria-hidden="true">
-  <div class="intro-mark">H</div>
-  <div class="intro-name">Himani Vaghani</div>
-  <div class="intro-bar"><span></span></div>
-</div>
 
 <div class="bg-blob blob-a"></div>
 <div class="bg-blob blob-b"></div>
@@ -591,23 +531,19 @@
 
 </main>
 
-<script src="assets/vendor/gsap.min.js"></script>
-<script src="assets/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/vendor/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // intro overlay: lock scroll while it plays, clean it up once it's done
-  const intro = document.getElementById('intro');
-  if(intro){
-    document.body.classList.add('intro-lock');
-    const dismissIntro = ()=>{
-      document.body.classList.remove('intro-lock');
-      intro.remove();
-      if(window.ScrollTrigger) ScrollTrigger.refresh();
-    };
-    intro.addEventListener('animationend', (e)=>{ if(e.target === intro) dismissIntro(); });
-    setTimeout(dismissIntro, 3000);
+  // smooth scroll (Lenis), wired into GSAP's ticker so ScrollTrigger stays in sync
+  if(window.Lenis){
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis.on('scroll', ()=>{ if(window.ScrollTrigger) ScrollTrigger.update(); });
+    gsap.ticker.add((time)=>{ lenis.raf(time*1000); });
+    gsap.ticker.lagSmoothing(0);
   }
 
   // subtle parallax on the orb shapes following pointer
@@ -629,7 +565,7 @@
   gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
   ScrollTrigger.matchMedia({
-    "(prefers-reduced-motion: no-preference) and (min-width: 861px)": function(){
+    "(min-width: 861px)": function(){
       const chromeEls = document.querySelectorAll('.chrome');
 
       // ---- scene: hero (flying words + flip-card photo + grow/park + tagline) ----
@@ -702,7 +638,7 @@
         .to('.footer-name', {opacity:1, y:0, duration:.8}, 1.5)
         .to('.footer-credit', {opacity:1, duration:.5}, 2);
     },
-    "(prefers-reduced-motion: reduce), (max-width: 860px)": function(){
+    "(max-width: 860px)": function(){
       document.body.classList.add('no-motion');
       document.querySelectorAll('.chrome').forEach(el=>el.classList.add('show'));
     }
