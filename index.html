@@ -5,42 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Himani Vaghani - AI & Security Engineer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #F7F2EA;
             color: #2a2a2a;
             overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse 120% 120% at 20% 10%, rgba(255, 200, 150, 0.15) 0%, transparent 40%),
-                        radial-gradient(ellipse 120% 120% at 80% 20%, rgba(255, 180, 120, 0.1) 0%, transparent 40%),
-                        radial-gradient(ellipse 150% 100% at 50% 100%, rgba(255, 200, 160, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
 
         /* Navigation */
         nav {
             position: fixed;
-            top: 45px;
+            top: 30px;
             left: 4vw;
             right: 4vw;
             z-index: 100;
@@ -48,88 +25,29 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .nav-left {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #8B7B6B;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-center {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
+        .nav-left { font-size: 1rem; font-weight: 600; color: #8B7B6B; }
+        .nav-center { display: flex; gap: 1rem; align-items: center; }
         .nav-pill {
             background: rgba(150, 130, 110, 0.15);
-            border: 1px solid rgba(150, 130, 110, 0.2);
-            padding: 0.6rem 1.4rem;
+            border: none;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #6B5B4B;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
+        .nav-logo { width: 32px; height: 32px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .nav-right { font-size: 0.8rem; color: #8B7B6B; display: flex; gap: 1rem; }
 
-        .nav-pill:hover {
-            background: rgba(150, 130, 110, 0.25);
-            transform: scale(1.05);
-        }
-
-        .nav-logo {
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 8px;
+        /* Hero */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
         }
-
-        .nav-logo-mark {
-            width: 20px;
-            height: 20px;
-            position: relative;
-        }
-
-        .nav-logo-mark::before,
-        .nav-logo-mark::after {
-            content: '';
-            position: absolute;
-            background: #2563EB;
-        }
-
-        .nav-logo-mark::before {
-            width: 2px;
-            height: 16px;
-            left: 3px;
-            top: 2px;
-        }
-
-        .nav-logo-mark::after {
-            width: 2px;
-            height: 16px;
-            left: 9px;
-            top: 2px;
-        }
-
-        .nav-right {
-            font-size: 0.85rem;
-            color: #8B7B6B;
-            display: flex;
-            gap: 1.2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 150vh;
-            position: relative;
-            overflow: hidden;
-        }
-
         .hero-bg {
             position: absolute;
             top: 0;
@@ -137,491 +55,226 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 30%;
+            object-position: center;
+            z-index: 1;
         }
-
         .hero-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-left-text {
-            position: absolute;
-            top: 25%;
-            left: 4vw;
-            color: #D4956E;
-            font-size: 0.95rem;
-            font-weight: 500;
-            line-height: 1.6;
+            position: relative;
             z-index: 10;
+            text-align: center;
         }
-
-        .hero-right-text {
-            position: absolute;
-            bottom: 20%;
-            right: 4vw;
-            color: #D4956E;
-            font-size: 0.95rem;
-            font-weight: 500;
-            z-index: 10;
-        }
-
         .hero-name {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14vw;
+            font-size: 12vw;
             font-weight: 900;
             color: #D4956E;
-            line-height: 0.9;
-            white-space: nowrap;
-            z-index: 5;
-            letter-spacing: -0.02em;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #D4956E;
+            margin-top: 1rem;
+            font-weight: 500;
         }
 
-        .hero-floating-img {
-            position: absolute;
-            width: 24vw;
-            height: 12vw;
-            background: linear-gradient(135deg, #8B7355 0%, #D4956E 100%);
-            border-radius: 20px;
-            bottom: 35%;
-            right: 15%;
-            z-index: 15;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Intro Section */
+        /* Intro */
         .intro {
-            height: 200vh;
+            height: auto;
             background: #F7F2EA;
-            padding: 100px 4vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            padding: 80px 4vw;
             position: relative;
             z-index: 20;
         }
-
         .intro-text {
-            font-size: 8vw;
-            line-height: 1.1;
+            font-size: 5vw;
+            line-height: 1.15;
             color: #6B5B4B;
             font-weight: 700;
             max-width: 90vw;
-            position: relative;
         }
-
-        .intro-text-line {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
         .intro-highlight {
             display: inline-block;
             background: #D4956E;
             color: white;
-            padding: 0.3em 0.8em;
-            border-radius: 30px;
-            font-weight: 700;
+            padding: 0.2em 0.6em;
+            border-radius: 20px;
             margin: 0 0.3em;
         }
 
-        .intro-scroll-mark {
-            display: inline-block;
-            color: #D4956E;
-            font-weight: 700;
-            margin: 0 0.4em;
-            position: relative;
-        }
-
-        .scroll-lines {
-            display: inline-flex;
-            gap: 6px;
-            margin-left: 0.8em;
-            vertical-align: middle;
-            position: relative;
-            top: -0.2em;
-        }
-
-        .scroll-line {
-            width: 2px;
-            height: 20px;
-            background: #D4956E;
-            border-radius: 1px;
-            transform-origin: center;
-        }
-
-        /* Abstract Shapes */
+        /* Shapes */
         .shapes {
-            height: 180vh;
+            height: 100vh;
             background: #F7F2EA;
             position: relative;
             overflow: hidden;
-        }
-
-        .shape {
-            position: absolute;
-        }
-
-        .shape-large-left {
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle at 35% 35%, rgba(212, 149, 110, 0.3), rgba(212, 149, 110, 0.05));
-            border-radius: 50%;
-            top: 10%;
-            left: -100px;
-            box-shadow: inset -30px -30px 60px rgba(0, 0, 0, 0.1);
-            filter: blur(1px);
-        }
-
-        .shape-capsule {
-            width: 280px;
-            height: 140px;
-            background: linear-gradient(135deg, rgba(200, 160, 120, 0.25), rgba(180, 140, 100, 0.15));
-            border-radius: 70px;
-            top: 30%;
-            left: 10%;
-            transform: rotate(-25deg);
-            box-shadow: inset -20px -20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .shape-center {
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle at 40% 40%, rgba(200, 160, 120, 0.25), rgba(180, 140, 100, 0.08));
-            border-radius: 50%;
-            top: 35%;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: inset -40px -40px 80px rgba(0, 0, 0, 0.1);
-        }
-
-        .shape-right {
-            width: 380px;
-            height: 380px;
-            background: radial-gradient(ellipse 120% 100% at 30% 30%, rgba(212, 149, 110, 0.2), rgba(212, 149, 110, 0.02));
-            border-radius: 50%;
-            top: 25%;
-            right: -50px;
-            box-shadow: inset -50px -50px 100px rgba(0, 0, 0, 0.08);
-        }
-
-        .shape-blue-1 {
-            width: 80px;
-            height: 80px;
-            background: #2563EB;
-            border-radius: 50%;
-            top: 50%;
-            right: 15%;
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
-        }
-
-        .shape-blue-2 {
-            width: 60px;
-            height: 60px;
-            background: #2563EB;
-            border-radius: 50%;
-            bottom: 20%;
-            right: 10%;
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
-        }
-
-        .shape-blue-3 {
-            width: 50px;
-            height: 50px;
-            background: #2563EB;
-            border-radius: 50%;
-            top: 60%;
-            left: 20%;
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
-        }
-
-        .shape-small-gray {
-            width: 40px;
-            height: 40px;
-            background: rgba(107, 91, 75, 0.15);
-            border-radius: 50%;
-            top: 45%;
-            left: 15%;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .shape-arrow-card {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #2563EB 0%, #1e40af 100%);
-            border-radius: 20px;
-            top: 65%;
-            right: 25%;
-            transform: rotate(12deg);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 2rem;
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
         }
-
-        .shape-line-curve {
+        .shape {
             position: absolute;
-            width: 200px;
-            height: 100px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: none;
-            border-left: none;
-            border-radius: 0 0 100px 0;
-            top: 20%;
-            left: 5%;
-            opacity: 0.6;
+            border-radius: 50%;
+            opacity: 0.7;
         }
+        .shape-1 { width: 300px; height: 300px; background: rgba(212, 149, 110, 0.2); top: 10%; left: 5%; }
+        .shape-2 { width: 250px; height: 250px; background: rgba(37, 99, 235, 0.15); top: 40%; right: 10%; }
+        .shape-3 { width: 200px; height: 200px; background: rgba(212, 149, 110, 0.15); bottom: 15%; left: 20%; }
 
         /* Services */
         .services {
-            height: 180vh;
+            height: auto;
             background: #F7F2EA;
-            padding: 100px 4vw;
+            padding: 60px 4vw;
             position: relative;
             z-index: 20;
         }
-
-        .services-label {
-            font-size: 0.9rem;
-            color: #8B7B6B;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
         .services-title {
-            font-size: 7vw;
-            line-height: 1.15;
+            font-size: 4vw;
+            line-height: 1.2;
             color: #6B5B4B;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 85vw;
         }
-
         .services-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #9B8B7B;
             font-weight: 400;
-            line-height: 1.8;
-            max-width: 600px;
+            line-height: 1.6;
+            max-width: 500px;
         }
 
         /* Gallery */
         .gallery-section {
-            height: 180vh;
+            height: auto;
             background: #F7F2EA;
-            padding: 80px 4vw;
+            padding: 60px 4vw;
             position: relative;
         }
-
-        .gallery-title {
-            font-size: 0.9rem;
-            color: #8B7B6B;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
+        .gallery-title { font-size: 0.85rem; color: #8B7B6B; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
         .gallery-heading {
-            font-size: 5vw;
+            font-size: 3.5vw;
             color: #D4956E;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
         }
-
         .gallery-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #9B8B7B;
-            margin-bottom: 4rem;
-            line-height: 1.7;
+            margin-bottom: 3rem;
+            line-height: 1.6;
         }
-
         .gallery-container {
             position: relative;
-            height: 400px;
+            height: 300px;
             overflow: hidden;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
-
         .gallery-track {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             height: 100%;
-            will-change: transform;
         }
-
         .gallery-card {
-            flex: 0 0 380px;
-            height: 380px;
-            background: linear-gradient(135deg, #D4956E 0%, #B87548 100%);
-            border-radius: 20px;
+            flex: 0 0 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #8B7355 0%, #D4956E 100%);
+            border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-
-        .gallery-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
-        }
-
+        .gallery-card:hover { transform: scale(1.03); }
         .gallery-card-image {
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #8B7355 0%, #D4956E 100%);
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 3rem;
         }
 
         /* Work */
         .work {
-            height: 200vh;
+            height: 120vh;
             background: #F7F2EA;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 100px 4vw;
         }
-
         .work-background {
             position: absolute;
-            font-size: 25vw;
+            font-size: 20vw;
             font-weight: 900;
-            color: rgba(212, 149, 110, 0.1);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            white-space: nowrap;
+            color: rgba(212, 149, 110, 0.08);
             z-index: 1;
             line-height: 0.9;
-            letter-spacing: -0.02em;
         }
-
         .work-folder {
             position: relative;
             z-index: 10;
-            width: 300px;
-            height: 350px;
+            width: 250px;
+            height: 300px;
             cursor: pointer;
         }
-
         .folder-body {
             width: 100%;
             height: 85%;
             background: #2563EB;
-            border-radius: 25px 25px 15px 15px;
-            box-shadow: 0 40px 80px rgba(37, 99, 235, 0.3);
+            border-radius: 20px 20px 10px 10px;
+            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.3);
             position: relative;
-            padding: 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             transition: all 0.3s ease;
         }
-
-        .work-folder:hover .folder-body {
-            transform: scale(1.05);
-        }
-
-        .folder-tab {
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            width: 120px;
-            height: 35px;
-            background: #2563EB;
-            border-radius: 8px 8px 0 0;
-            z-index: 2;
-        }
-
+        .work-folder:hover .folder-body { transform: scale(1.05); }
         .folder-papers {
             position: relative;
-            height: 60%;
+            height: 50%;
             margin-bottom: 1rem;
         }
-
         .folder-paper {
             position: absolute;
-            width: 90%;
-            height: 50px;
+            width: 80%;
+            height: 40px;
             background: white;
-            border-radius: 8px;
+            border-radius: 6px;
             opacity: 0.9;
         }
-
-        .folder-paper:nth-child(1) {
-            transform: translateY(0) translateX(5%);
-        }
-
-        .folder-paper:nth-child(2) {
-            transform: translateY(20px) translateX(3%);
-        }
-
-        .folder-paper:nth-child(3) {
-            transform: translateY(40px) translateX(2%);
-        }
-
-        .folder-label {
-            color: white;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
         .folder-arrow {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            bottom: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
             background: #D4956E;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .work-folder:hover .folder-arrow {
-            transform: translateX(8px) rotate(45deg);
-        }
-
-        .work-cta {
-            position: absolute;
-            bottom: 10%;
-            left: 4vw;
-            z-index: 10;
-        }
-
-        .work-cta-text {
-            color: #6B5B4B;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
+        .work-folder:hover .folder-arrow { transform: translateX(5px) rotate(45deg); }
 
         /* Dark Photo */
         .dark-photo {
-            height: 280vh;
+            height: 120vh;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
         }
-
         .dark-bg {
             position: absolute;
             top: 0;
@@ -629,83 +282,60 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
-            object-fit: cover;
             z-index: 1;
         }
-
-        .dark-overlay {
+        .dark-photo img {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 50%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-                        radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+            object-fit: cover;
+            object-position: center;
             z-index: 2;
         }
-
-        .dark-content {
+        .dark-text {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
             z-index: 3;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 100px 4vw;
-        }
-
-        .dark-title {
-            font-size: 12vw;
-            font-weight: 900;
             color: #D4956E;
+        }
+        .dark-title {
+            font-size: 8vw;
+            font-weight: 900;
             line-height: 0.9;
-            margin-bottom: 4rem;
-            max-width: 95vw;
+            margin-bottom: 2rem;
+            max-width: 80vw;
             letter-spacing: -0.02em;
         }
-
         .dark-subtitle {
-            font-size: 2rem;
-            color: #D4956E;
-            font-weight: 700;
-            line-height: 1.2;
-            max-width: 70%;
-            margin-bottom: 2rem;
-        }
-
-        .dark-divider {
-            width: 200px;
-            height: 1px;
-            background: #D4956E;
-            margin: 2rem 0;
-            opacity: 0.5;
-        }
-
-        .dark-details {
-            font-size: 0.95rem;
-            color: #D4956E;
+            font-size: 1.1rem;
+            margin-top: 2rem;
             opacity: 0.8;
         }
 
+        /* Value List */
         .value-list {
-            margin-top: 6rem;
+            position: absolute;
+            bottom: 60px;
+            left: 4vw;
+            z-index: 3;
+            width: 100%;
+            max-width: 500px;
         }
-
         .value-item {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            position: relative;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: #D4956E;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
-
-        .value-item-check {
-            width: 24px;
-            height: 24px;
+        .value-check {
+            width: 20px;
+            height: 20px;
             background: #D4956E;
             border-radius: 3px;
             display: flex;
@@ -713,279 +343,74 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             flex-shrink: 0;
             margin-top: 2px;
         }
 
-        .value-item-text {
-            color: #D4956E;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            max-width: 500px;
-        }
-
-        .value-item::after {
-            content: '';
-            position: absolute;
-            width: calc(100% + 3rem);
-            height: 1px;
-            background: rgba(212, 149, 110, 0.2);
-            bottom: -1.25rem;
-            left: -1.5rem;
-        }
-
-        .learn-more {
-            margin-top: 4rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .learn-more-btn {
-            background: #D4956E;
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            border: none;
-            font-size: 0.95rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .learn-more-btn:hover {
-            background: #C27F52;
-            transform: translateX(5px);
-        }
-
-        .learn-more-arrow {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #D4956E;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #D4956E;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .learn-more:hover .learn-more-arrow {
-            transform: translateX(5px);
-        }
-
         /* CTA */
         .cta {
-            height: 180vh;
-            background: #F7F2EA;
-            padding: 100px 4vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: auto;
+            background: #D4956E;
+            padding: 60px 4vw;
             position: relative;
             z-index: 20;
         }
-
-        .cta-card {
-            background: #D4956E;
-            border: 2px solid #D4956E;
-            border-radius: 50px;
-            padding: 80px;
-            max-width: 900px;
-            position: relative;
-        }
-
         .cta-title {
-            font-size: 6vw;
+            font-size: 3vw;
             font-weight: 700;
             color: #6B5B4B;
             line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: #6B5B4B;
-            opacity: 0.8;
-            margin-bottom: 3rem;
-        }
-
-        .cta-label {
-            font-size: 0.9rem;
-            color: #6B5B4B;
-            font-weight: 600;
             margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
         }
-
-        .lets-talk {
-            font-size: 5vw;
-            font-weight: 900;
+        .cta-subtitle {
+            font-size: 1rem;
             color: #6B5B4B;
-            position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            line-height: 1;
-            letter-spacing: -0.02em;
-        }
-
-        .cta-arrow {
-            position: absolute;
-            left: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            color: #6B5B4B;
-            opacity: 0.6;
+            opacity: 0.9;
         }
 
         /* Final */
         .final {
-            height: 200vh;
+            height: 100vh;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 4vw;
+            padding: 60px 4vw;
         }
-
-        .final-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-            z-index: 2;
-        }
-
         .final-content {
             position: relative;
             z-index: 3;
             text-align: center;
             width: 100%;
         }
-
         .final-name {
-            font-size: 16vw;
+            font-size: 14vw;
             font-weight: 900;
             color: #D4956E;
             line-height: 0.85;
             letter-spacing: -0.03em;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
-
         .final-credits {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 4rem;
+            margin-top: 2rem;
             color: #D4956E;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
-
-        .final-credits-left {
-            flex: 1;
-            text-align: left;
-        }
-
-        .final-credits-right {
-            flex: 1;
-            text-align: right;
-        }
-
+        .final-credits-left { flex: 1; text-align: left; }
+        .final-credits-right { flex: 1; text-align: right; }
         .tech-list {
             display: flex;
-            gap: 2rem;
-            font-size: 0.8rem;
+            gap: 1.5rem;
+            font-size: 0.75rem;
             opacity: 0.7;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             justify-content: flex-end;
-        }
-
-        @media (max-width: 1440px) {
-            .hero-name {
-                font-size: 12vw;
-            }
-
-            .dark-title {
-                font-size: 10vw;
-            }
-
-            .final-name {
-                font-size: 14vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                top: 30px;
-                left: 2vw;
-                right: 2vw;
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .nav-left {
-                font-size: 0.9rem;
-            }
-
-            .nav-right {
-                font-size: 0.75rem;
-                gap: 0.8rem;
-            }
-
-            .intro-text {
-                font-size: 6vw;
-            }
-
-            .hero-name {
-                font-size: 10vw;
-            }
-
-            .services-title {
-                font-size: 5vw;
-            }
-
-            .gallery-heading {
-                font-size: 4vw;
-            }
-
-            .dark-title {
-                font-size: 8vw;
-            }
-
-            .final-name {
-                font-size: 12vw;
-            }
-
-            .gallery-card {
-                flex: 0 0 280px;
-                height: 280px;
-            }
-
-            .cta-card {
-                padding: 40px;
-            }
-
-            .lets-talk {
-                position: static;
-                transform: none;
-                font-size: 3vw;
-                margin-top: 2rem;
-            }
-
-            .cta-arrow {
-                position: static;
-                transform: none;
-                display: none;
-            }
         }
     </style>
 </head>
@@ -995,9 +420,7 @@
         <div class="nav-left">Himani • Vaghani</div>
         <div class="nav-center">
             <div class="nav-pill" onclick="smoothScroll('about')">About</div>
-            <div class="nav-logo" onclick="smoothScroll('hero')">
-                <div class="nav-logo-mark"></div>
-            </div>
+            <div class="nav-logo" onclick="smoothScroll('hero')"></div>
             <div class="nav-pill" onclick="smoothScroll('work')">Work</div>
         </div>
         <div class="nav-right">
@@ -1011,112 +434,79 @@
     <section class="hero" id="hero">
         <img src="assets/himani-bg.webp" alt="Himani" class="hero-bg">
         <div class="hero-content">
-            <div class="hero-left-text">AI & Security<br>Engineer</div>
-            <div class="hero-right-text">Security Specialist</div>
             <div class="hero-name">HIMANI</div>
-            <div class="hero-floating-img"></div>
+            <div class="hero-subtitle">AI & Security Engineer</div>
         </div>
     </section>
 
     <!-- Intro Section -->
     <section class="intro" id="about">
         <div class="intro-text">
-            <div class="intro-text-line">
-                <span>10+ years</span>
-            </div>
-            <div class="intro-text-line">
-                <span>building secure systems</span>
-            </div>
-            <div class="intro-text-line">
-                <span>protecting data and creating</span>
-            </div>
-            <div class="intro-text-line">
-                <span class="intro-scroll-mark">
-                    SCROLL
-                    <span class="scroll-lines">
-                        <span class="scroll-line"></span>
-                        <span class="scroll-line"></span>
-                    </span>
-                </span>
-                <span>experiences</span>
-            </div>
-            <div class="intro-text-line">
-                <span>with me</span>
-            </div>
+            <div>10+ years</div>
+            <div>building <span class="intro-highlight">secure</span> systems</div>
+            <div>protecting data</div>
         </div>
     </section>
 
-    <!-- Abstract Shapes Section -->
+    <!-- Shapes Section -->
     <section class="shapes">
-        <div class="shape shape-large-left"></div>
-        <div class="shape shape-capsule"></div>
-        <div class="shape shape-center"></div>
-        <div class="shape shape-right"></div>
-        <div class="shape shape-blue-1"></div>
-        <div class="shape shape-blue-2"></div>
-        <div class="shape shape-blue-3"></div>
-        <div class="shape shape-small-gray"></div>
-        <div class="shape shape-arrow-card">→</div>
-        <div class="shape shape-line-curve"></div>
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </section>
 
     <!-- Services Section -->
     <section class="services">
-        <div class="services-label">expertise</div>
         <div class="services-title">
             I help companies<br>
-            <span class="intro-highlight">succeed</span> with<br>
-            security solutions
+            <span class="intro-highlight">succeed</span> with security
         </div>
         <div class="services-subtitle">
-            From threat detection and vulnerability assessment to secure architecture.
+            From threat detection and vulnerability assessment to secure architecture and compliance.
         </div>
     </section>
 
     <!-- Gallery 1 -->
     <section class="gallery-section">
         <div class="gallery-title">Work</div>
-        <div class="gallery-heading">Security<br><span class="accent">Audits</span></div>
-        <div class="gallery-description">Comprehensive security assessments and testing.</div>
+        <div class="gallery-heading">Security<br><span style="color: #D4956E;">Audits</span></div>
+        <div class="gallery-description">Comprehensive security assessments and penetration testing.</div>
         <div class="gallery-container">
             <div class="gallery-track" id="gallery1">
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
+                <div class="gallery-card"><div class="gallery-card-image">📋</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🔒</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🛡️</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🔍</div></div>
             </div>
         </div>
     </section>
 
     <!-- Gallery 2 -->
     <section class="gallery-section">
-        <div class="gallery-title">Visual Direction</div>
-        <div class="gallery-heading">Threat<br><span class="accent">Intelligence</span></div>
-        <div class="gallery-description">Advanced threat detection and analysis.</div>
+        <div class="gallery-title">Analysis</div>
+        <div class="gallery-heading">Threat<br><span style="color: #D4956E;">Intelligence</span></div>
+        <div class="gallery-description">Advanced threat detection and intelligence analysis.</div>
         <div class="gallery-container">
             <div class="gallery-track" id="gallery2">
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
+                <div class="gallery-card"><div class="gallery-card-image">🎯</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">📊</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">⚠️</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🔐</div></div>
             </div>
         </div>
     </section>
 
     <!-- Gallery 3 -->
     <section class="gallery-section">
-        <div class="gallery-title">Technical</div>
-        <div class="gallery-heading">Cloud<br><span class="accent">Architecture</span></div>
-        <div class="gallery-description">Secure infrastructure and DevSecOps.</div>
+        <div class="gallery-title">Infrastructure</div>
+        <div class="gallery-heading">Cloud<br><span style="color: #D4956E;">Architecture</span></div>
+        <div class="gallery-description">Secure cloud infrastructure and DevSecOps practices.</div>
         <div class="gallery-container">
             <div class="gallery-track" id="gallery3">
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
-                <div class="gallery-card"></div>
+                <div class="gallery-card"><div class="gallery-card-image">☁️</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🚀</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🏗️</div></div>
+                <div class="gallery-card"><div class="gallery-card-image">🔧</div></div>
             </div>
         </div>
     </section>
@@ -1126,72 +516,53 @@
         <div class="work-background">WORK</div>
         <div class="work-folder" onclick="smoothScroll('about')">
             <div class="folder-body">
-                <div class="folder-tab"></div>
                 <div class="folder-papers">
-                    <div class="folder-paper"></div>
-                    <div class="folder-paper"></div>
-                    <div class="folder-paper"></div>
+                    <div class="folder-paper" style="transform: translateY(0);"></div>
+                    <div class="folder-paper" style="transform: translateY(15px);"></div>
+                    <div class="folder-paper" style="transform: translateY(30px);"></div>
                 </div>
-                <div class="folder-label">Portfolio</div>
+                <div style="color: white; font-size: 0.8rem; font-weight: 600;">Portfolio</div>
                 <div class="folder-arrow">→</div>
             </div>
-        </div>
-        <div class="work-cta">
-            <div class="work-cta-text">Interested?</div>
-            <div class="work-cta-text">Keep scrolling...</div>
         </div>
     </section>
 
     <!-- Dark Photo Section -->
     <section class="dark-photo">
         <div class="dark-bg"></div>
-        <div class="dark-overlay"></div>
-        <div class="dark-content">
-            <h2 class="dark-title">Security matters</h2>
-            <h3 class="dark-subtitle">and I help you build it right</h3>
-            <div class="dark-divider"></div>
-            <div class="dark-details">Protecting systems, data, and reputation</div>
-
-            <div class="value-list">
-                <div class="value-item">
-                    <div class="value-item-check">✓</div>
-                    <div class="value-item-text">Comprehensive security assessments identifying real vulnerabilities.</div>
-                </div>
-                <div class="value-item">
-                    <div class="value-item-check">✓</div>
-                    <div class="value-item-text">Care about architecture from concept to production deployment.</div>
-                </div>
-                <div class="value-item">
-                    <div class="value-item-check">✓</div>
-                    <div class="value-item-text">Define security frameworks keeping organizations compliant.</div>
-                </div>
-                <div class="value-item">
-                    <div class="value-item-check">✓</div>
-                    <div class="value-item-text">Align security goals with industry best practices.</div>
-                </div>
+        <img src="assets/himani-bg.webp" alt="">
+        <div class="dark-text">
+            <div class="dark-title" id="darkTitle">Good design<br>takes time</div>
+            <div class="dark-subtitle">Security matters and we build it right</div>
+        </div>
+        <div class="value-list">
+            <div class="value-item">
+                <div class="value-check">✓</div>
+                <div>Comprehensive security assessments identifying real vulnerabilities</div>
             </div>
-
-            <div class="learn-more">
-                <button class="learn-more-btn">Let's talk</button>
-                <div class="learn-more-arrow">→</div>
+            <div class="value-item">
+                <div class="value-check">✓</div>
+                <div>Care about architecture from concept to production</div>
+            </div>
+            <div class="value-item">
+                <div class="value-check">✓</div>
+                <div>Define security frameworks keeping organizations compliant</div>
+            </div>
+            <div class="value-item">
+                <div class="value-check">✓</div>
+                <div>Align security goals with industry best practices</div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta">
-        <div class="cta-card">
-            <div class="cta-label">Ready to strengthen your security?</div>
-            <div class="cta-title">Let's build<br>something<br>secure</div>
-            <div class="cta-subtitle">from startups to enterprises</div>
-            <div class="lets-talk">Let's talk</div>
-            <div class="cta-arrow">→</div>
-        </div>
+        <div class="cta-title">Let's build something secure</div>
+        <div class="cta-subtitle">From startups to enterprises, let's protect what matters</div>
     </section>
 
     <!-- Final Section -->
     <section class="final">
-        <div class="final-overlay"></div>
         <div class="final-content">
             <div class="final-name">HIMANI</div>
             <div class="final-credits">
@@ -1228,141 +599,76 @@
             }
         }
 
-        // Hero Animation
+        // Hero animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.hero',
                 start: 'top top',
                 end: 'bottom top',
-                scrub: 1,
-                pin: true
+                scrub: 1
             }
         })
-        .to('.hero-bg', { y: -100 }, 0)
-        .to('.hero-name', { x: -200 }, 0)
-        .to('.hero-floating-img', { x: 150, y: -80 }, 0)
-        .to('.hero-left-text', { y: -100, opacity: 0 }, 0)
-        .to('.hero-right-text', { y: 100, opacity: 0 }, 0);
+        .to('.hero-bg', { y: -80 }, 0)
+        .to('.hero-name', { y: -100, opacity: 0.3 }, 0);
 
-        // Intro Animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.intro',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1,
-                pin: true
-            }
-        })
-        .from('.intro-text-line:nth-child(1)', { y: 150, opacity: 0 }, 0)
-        .from('.intro-text-line:nth-child(2)', { y: 150, opacity: 0 }, 0.1)
-        .from('.intro-text-line:nth-child(3)', { y: 150, opacity: 0 }, 0.2)
-        .from('.intro-text-line:nth-child(4)', { y: 150, opacity: 0 }, 0.3)
-        .from('.intro-text-line:nth-child(5)', { y: 150, opacity: 0 }, 0.4);
-
-        // Scroll Lines Animation
+        // Intro animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.intro',
                 start: 'top center',
-                end: 'center center',
+                end: 'bottom center',
                 scrub: 1
             }
         })
-        .to('.scroll-line:nth-child(1)', { scaleY: 2, y: -20, opacity: 1 }, 0)
-        .to('.scroll-line:nth-child(2)', { scaleY: 1.5, y: -10, opacity: 1 }, 0);
+        .from('.intro-text', { y: 100, opacity: 0 });
 
-        // Shapes Animation
+        // Shapes animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.shapes',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1,
-                pin: true
-            }
-        })
-        .to('.shape-large-left', { y: -150, x: -50 }, 0)
-        .to('.shape-capsule', { x: 180, y: -220, rotation: 45 }, 0)
-        .to('.shape-center', { y: -160, scale: 1.1 }, 0)
-        .to('.shape-right', { x: -140, y: -200 }, 0)
-        .to('.shape-blue-1', { x: 240, y: -320 }, 0)
-        .to('.shape-blue-2', { x: -200, y: -280 }, 0)
-        .to('.shape-blue-3', { x: 100, y: -240 }, 0)
-        .to('.shape-small-gray', { x: 150, y: -180 }, 0)
-        .to('.shape-arrow-card', { x: -180, y: -260, rotation: -30 }, 0)
-        .to('.shape-line-curve', { x: -100, y: -120, opacity: 0.3 }, 0);
-
-        // Services Animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.services',
                 start: 'top center',
-                end: 'center center',
+                end: 'bottom center',
                 scrub: 1
             }
         })
-        .from('.services-title', { y: 100, opacity: 0 })
-        .from('.services-subtitle', { y: 100, opacity: 0 }, 0.2);
+        .to('.shape-1', { y: -100, x: -50 }, 0)
+        .to('.shape-2', { y: 80, x: 100 }, 0)
+        .to('.shape-3', { y: -80, x: 50 }, 0);
 
-        // Gallery Animations
-        function createGalleryAnimation(galleryId) {
-            const track = document.querySelector(`#${galleryId}`);
-            if (!track) return;
-
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: track.closest('.gallery-section'),
-                    start: 'center center',
-                    end: 'bottom center',
-                    scrub: 1,
-                    pin: track.closest('.gallery-section'),
-                    pinSpacing: false
-                }
-            })
-            .to(track, {
-                x: () => -(track.scrollWidth - track.parentElement.clientWidth),
-                ease: 'none'
-            });
-        }
-
-        createGalleryAnimation('gallery1');
-        createGalleryAnimation('gallery2');
-        createGalleryAnimation('gallery3');
-
-        // Work Animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.work',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1,
-                pin: true
+        // Gallery animations
+        ['gallery1', 'gallery2', 'gallery3'].forEach(id => {
+            const track = document.getElementById(id);
+            if (track) {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: track.closest('.gallery-section'),
+                        start: 'center center',
+                        end: 'bottom center',
+                        scrub: 1,
+                        pin: track.closest('.gallery-section'),
+                        pinSpacing: false
+                    }
+                })
+                .to(track, {
+                    x: () => -(track.scrollWidth - track.parentElement.clientWidth),
+                    ease: 'none'
+                });
             }
-        })
-        .from('.work-folder', { y: 300, opacity: 0, rotation: -10 })
-        .to('.folder-papers', { y: -30 }, 0)
-        .to('.work-background', { x: 100, opacity: 0.15 }, 0);
+        });
 
-        // Dark Animation
+        // Dark photo animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.dark-photo',
                 start: 'top top',
                 end: 'bottom top',
-                scrub: 1,
-                pin: true
+                scrub: 1
             }
         })
-        .to('.dark-title', { x: -300, y: 100 }, 0)
-        .to('.dark-subtitle', { x: 200, y: -50 }, 0)
-        .from('.value-item', {
-            y: 100,
-            opacity: 0,
-            stagger: 0.15
-        }, 0);
+        .to('.dark-photo img', { x: -200 }, 0)
+        .to('.dark-title', { x: -200, y: 100 }, 0);
 
-        // CTA Animation
+        // CTA animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.cta',
@@ -1371,26 +677,20 @@
                 scrub: 1
             }
         })
-        .from('.cta-card', { y: 200, opacity: 0 })
-        .to('.lets-talk', { x: 50 }, 0);
+        .from('.cta-title', { y: 100, opacity: 0 });
 
-        // Final Animation
+        // Final animation
         gsap.timeline({
             scrollTrigger: {
                 trigger: '.final',
                 start: 'top top',
                 end: 'bottom top',
-                scrub: 1,
-                pin: true
+                scrub: 1
             }
         })
-        .from('.final-name', { y: 400, opacity: 0 })
-        .from('.final-credits', { opacity: 0 }, 0.3);
+        .from('.final-name', { y: 200, opacity: 0 });
 
-        // Refresh on load
-        window.addEventListener('load', () => {
-            ScrollTrigger.refresh();
-        });
+        ScrollTrigger.refresh();
     </script>
 </body>
 </html>
