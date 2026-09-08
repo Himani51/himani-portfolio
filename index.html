@@ -10,687 +10,497 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #F7F2EA;
-            color: #2a2a2a;
-            overflow-x: hidden;
+            color: #333;
+            line-height: 1.6;
         }
 
         /* Navigation */
         nav {
             position: fixed;
-            top: 30px;
-            left: 4vw;
-            right: 4vw;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #F7F2EA;
+            padding: 20px 4vw;
             z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .nav-left { font-size: 1rem; font-weight: 600; color: #8B7B6B; }
-        .nav-center { display: flex; gap: 1rem; align-items: center; }
-        .nav-pill {
-            background: rgba(150, 130, 110, 0.15);
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: #6B5B4B;
-            cursor: pointer;
-        }
-        .nav-logo { width: 32px; height: 32px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-        .nav-right { font-size: 0.8rem; color: #8B7B6B; display: flex; gap: 1rem; }
+        .nav-left { font-size: 1rem; font-weight: 600; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #333; font-size: 0.9rem; cursor: pointer; }
+        .nav-links a:hover { color: #D4956E; }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
+            padding: 100px 4vw 60px;
+            margin-top: 60px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: 60px;
+            align-items: flex-start;
+            animation: fadeIn 0.8s ease-in;
         }
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .hero-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 20%;
-            z-index: 1;
         }
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
-        .hero-name {
-            font-size: 12vw;
-            font-weight: 900;
+        .hero-content .role {
+            font-size: 1.3rem;
             color: #D4956E;
-            line-height: 0.85;
-            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
         }
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: #D4956E;
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-
-        /* Intro */
-        .intro {
-            height: auto;
-            background: #F7F2EA;
-            padding: 80px 4vw;
-            position: relative;
-            z-index: 20;
-        }
-        .intro-text {
-            font-size: 5vw;
-            line-height: 1.15;
-            color: #6B5B4B;
-            font-weight: 700;
-            max-width: 90vw;
-        }
-        .intro-highlight {
-            display: inline-block;
-            background: #D4956E;
-            color: white;
-            padding: 0.2em 0.6em;
-            border-radius: 20px;
-            margin: 0 0.3em;
-        }
-
-        /* Shapes */
-        .shapes {
-            height: 100vh;
-            background: #F7F2EA;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.7;
-        }
-        .shape-1 { width: 300px; height: 300px; background: rgba(212, 149, 110, 0.2); top: 10%; left: 5%; }
-        .shape-2 { width: 250px; height: 250px; background: rgba(37, 99, 235, 0.15); top: 40%; right: 10%; }
-        .shape-3 { width: 200px; height: 200px; background: rgba(212, 149, 110, 0.15); bottom: 15%; left: 20%; }
-
-        /* Services */
-        .services {
-            height: auto;
-            background: #F7F2EA;
-            padding: 60px 4vw;
-            position: relative;
-            z-index: 20;
-        }
-        .services-title {
-            font-size: 4vw;
-            line-height: 1.2;
-            color: #6B5B4B;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            max-width: 85vw;
-        }
-        .services-subtitle {
-            font-size: 1.1rem;
-            color: #9B8B7B;
-            font-weight: 400;
-            line-height: 1.6;
+        .hero-content p {
+            font-size: 1rem;
+            color: #666;
             max-width: 500px;
         }
 
-        /* Gallery */
-        .gallery-section {
-            height: auto;
-            background: #F7F2EA;
-            padding: 60px 4vw;
-            position: relative;
+        /* Section */
+        section {
+            padding: 80px 4vw;
+            animation: fadeIn 1s ease-in;
         }
-        .gallery-title { font-size: 0.85rem; color: #8B7B6B; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        .gallery-heading {
-            font-size: 3.5vw;
-            color: #D4956E;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-        .gallery-description {
-            font-size: 1rem;
-            color: #9B8B7B;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-        .gallery-container {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
+        section h2 {
+            font-size: 2.5rem;
             margin-bottom: 2rem;
+            color: #333;
         }
-        .gallery-track {
-            display: flex;
-            gap: 20px;
-            height: 100%;
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
         }
-        .gallery-card {
-            flex: 0 0 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #8B7355 0%, #D4956E 100%);
-            border-radius: 16px;
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        .experience-item h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+        .experience-item .company {
+            color: #D4956E;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .experience-item .date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.8rem;
+        }
+        .experience-item p {
+            color: #666;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .skill-category ul {
+            list-style: none;
+        }
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: #666;
+        }
+        .skill-category li:before {
+            content: "▸ ";
+            color: #D4956E;
+            font-weight: bold;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            border-radius: 12px;
             overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
-        .gallery-card:hover { transform: scale(1.03); }
-        .gallery-card-image {
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-card img {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #8B7355 0%, #D4956E 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.3);
-            font-size: 3rem;
-        }
-
-        /* Work */
-        .work {
-            height: 120vh;
-            background: #F7F2EA;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .work-background {
-            position: absolute;
-            font-size: 20vw;
-            font-weight: 900;
-            color: rgba(212, 149, 110, 0.08);
-            z-index: 1;
-            line-height: 0.9;
-        }
-        .work-folder {
-            position: relative;
-            z-index: 10;
-            width: 250px;
-            height: 300px;
-            cursor: pointer;
-        }
-        .folder-body {
-            width: 100%;
-            height: 85%;
-            background: #2563EB;
-            border-radius: 20px 20px 10px 10px;
-            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.3);
-            position: relative;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            transition: all 0.3s ease;
-        }
-        .work-folder:hover .folder-body { transform: scale(1.05); }
-        .folder-papers {
-            position: relative;
-            height: 50%;
-            margin-bottom: 1rem;
-        }
-        .folder-paper {
-            position: absolute;
-            width: 80%;
-            height: 40px;
-            background: white;
-            border-radius: 6px;
-            opacity: 0.9;
-        }
-        .folder-arrow {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: #D4956E;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .work-folder:hover .folder-arrow { transform: translateX(5px) rotate(45deg); }
-
-        /* Dark Photo */
-        .dark-photo {
-            height: 120vh;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
-        }
-        .dark-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
-            z-index: 1;
-        }
-        .dark-photo img {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            object-position: center;
-            z-index: 2;
+            object-position: center 20%;
         }
-        .dark-text {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            z-index: 3;
-            color: #D4956E;
+        .project-card-content {
+            padding: 1.5rem;
+            background: white;
         }
-        .dark-title {
-            font-size: 8vw;
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            max-width: 80vw;
-            letter-spacing: -0.02em;
-        }
-        .dark-subtitle {
+        .project-card h3 {
             font-size: 1.1rem;
-            margin-top: 2rem;
-            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
-
-        /* Value List */
-        .value-list {
-            position: absolute;
-            bottom: 60px;
-            left: 4vw;
-            z-index: 3;
-            width: 100%;
-            max-width: 500px;
-        }
-        .value-item {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: #D4956E;
+        .project-card p {
             font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .value-check {
-            width: 20px;
-            height: 20px;
-            background: #D4956E;
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.75rem;
-            flex-shrink: 0;
-            margin-top: 2px;
+            color: #666;
         }
 
-        /* CTA */
-        .cta {
-            height: auto;
-            background: #D4956E;
-            padding: 60px 4vw;
-            position: relative;
-            z-index: 20;
+        /* About */
+        .about-content {
+            max-width: 800px;
         }
-        .cta-title {
-            font-size: 3vw;
-            font-weight: 700;
-            color: #6B5B4B;
-            line-height: 1.2;
+        .about-content p {
             margin-bottom: 1rem;
-        }
-        .cta-subtitle {
+            color: #666;
             font-size: 1rem;
-            color: #6B5B4B;
-            opacity: 0.9;
+            line-height: 1.8;
         }
 
-        /* Final */
-        .final {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 4vw;
+        /* Vision */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        .final-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            width: 100%;
-        }
-        .final-name {
-            font-size: 14vw;
-            font-weight: 900;
-            color: #D4956E;
-            line-height: 0.85;
-            letter-spacing: -0.03em;
+        .vision-item h3 {
+            font-size: 1.3rem;
+            color: #333;
             margin-bottom: 1rem;
         }
-        .final-credits {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-            color: #D4956E;
-            font-size: 0.8rem;
+        .vision-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
-        .final-credits-left { flex: 1; text-align: left; }
-        .final-credits-right { flex: 1; text-align: right; }
-        .tech-list {
+
+        /* Contact */
+        .contact {
+            background: #E8D9CE;
+            text-align: center;
+        }
+        .contact h2 {
+            margin-bottom: 1.5rem;
+        }
+        .contact-info {
             display: flex;
-            gap: 1.5rem;
-            font-size: 0.75rem;
-            opacity: 0.7;
-            margin-top: 0.8rem;
-            justify-content: flex-end;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            text-align: center;
+        }
+        .contact-item a {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            background: #D4956E;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .contact-item a:hover {
+            background: #C27F52;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 4vw;
+            font-size: 0.9rem;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .hero-photo {
+                width: 150px;
+                height: 150px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            section h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-left">Himani • Vaghani</div>
-        <div class="nav-center">
-            <div class="nav-pill" onclick="smoothScroll('about')">About</div>
-            <div class="nav-logo" onclick="smoothScroll('hero')"></div>
-            <div class="nav-pill" onclick="smoothScroll('work')">Work</div>
-        </div>
-        <div class="nav-right">
-            <span>Email</span>
-            <span>LinkedIn</span>
-            <span>GitHub</span>
+    <nav>
+        <div class="nav-left">Himani Vaghani</div>
+        <div class="nav-links">
+            <a onclick="scrollTo('experience')">Experience</a>
+            <a onclick="scrollTo('skills')">Skills</a>
+            <a onclick="scrollTo('projects')">Projects</a>
+            <a onclick="scrollTo('about')">About</a>
+            <a onclick="scrollTo('contact')">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <img src="assets/himani-bg.webp" alt="Himani" class="hero-bg">
+    <section class="hero">
+        <div class="hero-photo">
+            <img src="assets/himani-bg.webp" alt="Himani Vaghani">
+        </div>
         <div class="hero-content">
-            <div class="hero-name">HIMANI</div>
-            <div class="hero-subtitle">AI & Security Engineer</div>
+            <h1>Himani Vaghani</h1>
+            <div class="role">AI & Security Engineer</div>
+            <p>Building secure AI systems, tools, and products. Specializing in threat detection, vulnerability assessment, and security architecture for modern applications.</p>
         </div>
     </section>
 
-    <!-- Intro Section -->
-    <section class="intro" id="about">
-        <div class="intro-text">
-            <div>10+ years</div>
-            <div>building <span class="intro-highlight">secure</span> systems</div>
-            <div>protecting data</div>
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <h3>Senior Security Engineer</h3>
+            <div class="company">Tech Company</div>
+            <div class="date">2023 - Present</div>
+            <p>Led security initiatives for enterprise applications. Designed and implemented threat detection systems, conducted security audits, and mentored junior engineers on security best practices.</p>
+        </div>
+        <div class="experience-item">
+            <h3>AI Security Specialist</h3>
+            <div class="company">Security Firm</div>
+            <div class="date">2021 - 2023</div>
+            <p>Developed AI-powered security solutions for vulnerability detection. Performed penetration testing and created security frameworks for cloud infrastructure.</p>
+        </div>
+        <div class="experience-item">
+            <h3>Security Engineer</h3>
+            <div class="company">StartUp</div>
+            <div class="date">2019 - 2021</div>
+            <p>Built security infrastructure from the ground up. Implemented DevSecOps practices and developed tools for continuous security monitoring.</p>
         </div>
     </section>
 
-    <!-- Shapes Section -->
-    <section class="shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services">
-        <div class="services-title">
-            I help companies<br>
-            <span class="intro-highlight">succeed</span> with security
-        </div>
-        <div class="services-subtitle">
-            From threat detection and vulnerability assessment to secure architecture and compliance.
-        </div>
-    </section>
-
-    <!-- Gallery 1 -->
-    <section class="gallery-section">
-        <div class="gallery-title">Work</div>
-        <div class="gallery-heading">Security<br><span style="color: #D4956E;">Audits</span></div>
-        <div class="gallery-description">Comprehensive security assessments and penetration testing.</div>
-        <div class="gallery-container">
-            <div class="gallery-track" id="gallery1">
-                <div class="gallery-card"><div class="gallery-card-image">📋</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🔒</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🛡️</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🔍</div></div>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Security</h3>
+                <ul>
+                    <li>Threat Detection</li>
+                    <li>Vulnerability Assessment</li>
+                    <li>Penetration Testing</li>
+                    <li>Security Architecture</li>
+                    <li>Compliance & Audit</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>AI & ML</h3>
+                <ul>
+                    <li>Machine Learning</li>
+                    <li>Anomaly Detection</li>
+                    <li>Data Analysis</li>
+                    <li>Deep Learning</li>
+                    <li>LLM Integration</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Development</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>JavaScript/TypeScript</li>
+                    <li>Cloud (AWS/GCP)</li>
+                    <li>DevOps</li>
+                    <li>Databases</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Platforms</h3>
+                <ul>
+                    <li>Docker & Kubernetes</li>
+                    <li>SIEM Tools</li>
+                    <li>Git & CI/CD</li>
+                    <li>Security Scanners</li>
+                    <li>Monitoring Tools</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Gallery 2 -->
-    <section class="gallery-section">
-        <div class="gallery-title">Analysis</div>
-        <div class="gallery-heading">Threat<br><span style="color: #D4956E;">Intelligence</span></div>
-        <div class="gallery-description">Advanced threat detection and intelligence analysis.</div>
-        <div class="gallery-container">
-            <div class="gallery-track" id="gallery2">
-                <div class="gallery-card"><div class="gallery-card-image">🎯</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">📊</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">⚠️</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🔐</div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery 3 -->
-    <section class="gallery-section">
-        <div class="gallery-title">Infrastructure</div>
-        <div class="gallery-heading">Cloud<br><span style="color: #D4956E;">Architecture</span></div>
-        <div class="gallery-description">Secure cloud infrastructure and DevSecOps practices.</div>
-        <div class="gallery-container">
-            <div class="gallery-track" id="gallery3">
-                <div class="gallery-card"><div class="gallery-card-image">☁️</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🚀</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🏗️</div></div>
-                <div class="gallery-card"><div class="gallery-card-image">🔧</div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work Section -->
-    <section class="work" id="work">
-        <div class="work-background">WORK</div>
-        <div class="work-folder" onclick="smoothScroll('about')">
-            <div class="folder-body">
-                <div class="folder-papers">
-                    <div class="folder-paper" style="transform: translateY(0);"></div>
-                    <div class="folder-paper" style="transform: translateY(15px);"></div>
-                    <div class="folder-paper" style="transform: translateY(30px);"></div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects & Work</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 1">
+                <div class="project-card-content">
+                    <h3>AI Threat Detection System</h3>
+                    <p>Built machine learning model for real-time threat detection in network traffic.</p>
                 </div>
-                <div style="color: white; font-size: 0.8rem; font-weight: 600;">Portfolio</div>
-                <div class="folder-arrow">→</div>
             </div>
-        </div>
-    </section>
-
-    <!-- Dark Photo Section -->
-    <section class="dark-photo">
-        <div class="dark-bg"></div>
-        <img src="assets/himani-bg.webp" alt="">
-        <div class="dark-text">
-            <div class="dark-title" id="darkTitle">Good design<br>takes time</div>
-            <div class="dark-subtitle">Security matters and we build it right</div>
-        </div>
-        <div class="value-list">
-            <div class="value-item">
-                <div class="value-check">✓</div>
-                <div>Comprehensive security assessments identifying real vulnerabilities</div>
-            </div>
-            <div class="value-item">
-                <div class="value-check">✓</div>
-                <div>Care about architecture from concept to production</div>
-            </div>
-            <div class="value-item">
-                <div class="value-check">✓</div>
-                <div>Define security frameworks keeping organizations compliant</div>
-            </div>
-            <div class="value-item">
-                <div class="value-check">✓</div>
-                <div>Align security goals with industry best practices</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="cta-title">Let's build something secure</div>
-        <div class="cta-subtitle">From startups to enterprises, let's protect what matters</div>
-    </section>
-
-    <!-- Final Section -->
-    <section class="final">
-        <div class="final-content">
-            <div class="final-name">HIMANI</div>
-            <div class="final-credits">
-                <div class="final-credits-left">
-                    <div>AI & Security Engineer</div>
-                    <div>2024–2026</div>
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 2">
+                <div class="project-card-content">
+                    <h3>Security Audit Framework</h3>
+                    <p>Developed comprehensive framework for automated security assessments.</p>
                 </div>
-                <div class="final-credits-right">
-                    <div>Himani Vaghani</div>
-                    <div class="tech-list">
-                        <span>GSAP</span>
-                        <span>ScrollTrigger</span>
-                    </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 3">
+                <div class="project-card-content">
+                    <h3>Cloud Security Platform</h3>
+                    <p>Created platform for monitoring and securing cloud infrastructure.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 4">
+                <div class="project-card-content">
+                    <h3>Vulnerability Scanner</h3>
+                    <p>Engineered advanced tool for identifying security vulnerabilities automatically.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 5">
+                <div class="project-card-content">
+                    <h3>DevSecOps Pipeline</h3>
+                    <p>Implemented security-first CI/CD pipeline for rapid and safe deployments.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/himani-bg.webp" alt="Project 6">
+                <div class="project-card-content">
+                    <h3>Security Training Platform</h3>
+                    <p>Built interactive platform for security awareness and training programs.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>I'm a passionate AI and Security engineer with over 10 years of experience building secure systems and tools. My journey has taken me from startups to enterprise environments, where I've consistently focused on protecting data, systems, and user privacy.</p>
+            <p>What drives me is the intersection of artificial intelligence and cybersecurity. I believe that as AI becomes more integrated into our infrastructure, security must be a first-class citizen in design, not an afterthought. I'm committed to creating solutions that are not just powerful, but also secure and responsible.</p>
+            <p>When I'm not working on security challenges, I enjoy contributing to open-source projects, speaking at conferences, and mentoring the next generation of security engineers.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section>
+        <h2>What I Can Do</h2>
+        <div class="vision-grid">
+            <div class="vision-item">
+                <h3>Security Architecture</h3>
+                <p>Design and implement secure systems from the ground up, ensuring protection against current and emerging threats.</p>
+            </div>
+            <div class="vision-item">
+                <h3>AI Security Solutions</h3>
+                <p>Develop AI-powered security tools for threat detection, anomaly detection, and intelligent response systems.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Security Audits</h3>
+                <p>Conduct comprehensive security assessments, penetration testing, and compliance audits for organizations.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Team Leadership</h3>
+                <p>Lead and mentor security teams, establishing best practices and building strong security cultures.</p>
+            </div>
+            <div class="vision-item">
+                <h3>DevSecOps</h3>
+                <p>Integrate security into CI/CD pipelines, automating security checks and reducing vulnerabilities.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Consulting</h3>
+                <p>Provide strategic security consulting for organizations looking to strengthen their security posture.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <p>Email</p>
+                <a href="mailto:vaghanihimani@gmail.com">vaghanihimani@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <p>LinkedIn</p>
+                <a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a>
+            </div>
+            <div class="contact-item">
+                <p>GitHub</p>
+                <a href="https://github.com" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Himani Vaghani. All rights reserved.</p>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        function smoothScroll(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                gsap.to(window, {
-                    scrollTo: { y: element, offsetY: 50 },
-                    duration: 1.5,
-                    ease: "power2.inOut"
-                });
-            }
-        }
-
-        // Hero animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
-            }
-        })
-        .to('.hero-bg', { y: -80 }, 0)
-        .to('.hero-name', { y: -100, opacity: 0.3 }, 0);
-
-        // Intro animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.intro',
-                start: 'top center',
-                end: 'bottom center',
-                scrub: 1
-            }
-        })
-        .from('.intro-text', { y: 100, opacity: 0 });
-
-        // Shapes animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.shapes',
-                start: 'top center',
-                end: 'bottom center',
-                scrub: 1
-            }
-        })
-        .to('.shape-1', { y: -100, x: -50 }, 0)
-        .to('.shape-2', { y: 80, x: 100 }, 0)
-        .to('.shape-3', { y: -80, x: 50 }, 0);
-
-        // Gallery animations
-        ['gallery1', 'gallery2', 'gallery3'].forEach(id => {
-            const track = document.getElementById(id);
-            if (track) {
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: track.closest('.gallery-section'),
-                        start: 'center center',
-                        end: 'bottom center',
-                        scrub: 1,
-                        pin: track.closest('.gallery-section'),
-                        pinSpacing: false
-                    }
-                })
-                .to(track, {
-                    x: () => -(track.scrollWidth - track.parentElement.clientWidth),
-                    ease: 'none'
-                });
-            }
+        // Fade in animations on scroll
+        gsap.utils.toArray("section").forEach(section => {
+            gsap.to(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    once: true
+                },
+                opacity: 1,
+                duration: 0.8
+            });
         });
 
-        // Dark photo animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.dark-photo',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
+        // Smooth scroll function
+        function scrollTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
             }
-        })
-        .to('.dark-photo img', { x: -200 }, 0)
-        .to('.dark-title', { x: -200, y: 100 }, 0);
-
-        // CTA animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.cta',
-                start: 'top center',
-                end: 'bottom center',
-                scrub: 1
-            }
-        })
-        .from('.cta-title', { y: 100, opacity: 0 });
-
-        // Final animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.final',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
-            }
-        })
-        .from('.final-name', { y: 200, opacity: 0 });
-
-        ScrollTrigger.refresh();
+        }
     </script>
 </body>
 </html>
