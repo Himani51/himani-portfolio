@@ -200,27 +200,28 @@
   .proj-card:hover .proj-thumb.has-shot img.alt{opacity:1;}
   /* ---- scene: vintage ---- */
   .vintage-filter{filter:sepia(.55) saturate(1.6) hue-rotate(-14deg) contrast(1.08) brightness(1.03);}
-  .scene-vintage .wrap{display:flex;align-items:center;justify-content:space-between;gap:40px;}
-  .vintage-card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(74vw,480px);}
-  .vintage-photo-wrap{
-    position:absolute;top:50%;right:2%;transform:translateY(-50%);
-    width:min(48vw,380px);aspect-ratio:420/588;opacity:0;
+  /* about scene */
+  .scene-about{--ph:min(66vh,470px);}
+  .ab-stage{position:absolute;left:50%;top:calc(50% + 36px);width:0;height:0;z-index:2;}
+  .ab-photo{
+    position:absolute;left:0;top:0;height:var(--ph);aspect-ratio:420/588;
+    transform:translate(-50%,-50%);z-index:2;
+    background:var(--photo-cutout) center bottom/contain no-repeat;
   }
-  .vintage-photo{
-    position:absolute;inset:0;z-index:2;
-    background-image:var(--photo-cutout);
-    background-size:contain;background-position:center bottom;background-repeat:no-repeat;
+  .ab-word{
+    position:absolute;top:0;white-space:nowrap;
+    font:800 clamp(30px,4.2vw,64px)/1 'Baloo 2',sans-serif;letter-spacing:.01em;
   }
-  .vtext{
-    position:absolute;left:50%;
-    font-family:'Baloo 2',sans-serif;font-weight:800;
-    font-size:clamp(28px,5vw,58px);white-space:nowrap;letter-spacing:.02em;
+  .ab-good{z-index:1;color:var(--peach-3);left:calc(var(--ph)*.357 + 18px);transform:translateY(calc(var(--ph)*-.2 - 50%));}
+  .ab-take{z-index:3;color:var(--blue);right:calc(var(--ph)*.357 + 18px);transform:translateY(calc(var(--ph)*.16 - 50%));}
+  .about-panel{
+    position:absolute;z-index:3;left:53vw;top:calc(50% + 36px);transform:translateY(-50%);
+    width:min(41vw,540px);
   }
-  .vtext-behind{top:40%;z-index:1;color:var(--peach-3);opacity:.9;}
-  .vtext-front{top:2%;z-index:3;color:var(--blue);}
-  .about-panel{position:relative;width:min(40vw,480px);opacity:0;transform:translateX(-40px);}
-  .about-panel p{font-size:16px;line-height:1.7;color:#5c5852;margin:0 0 14px;}
+  .about-panel .section-title{font-size:clamp(24px,2.8vw,38px);margin-bottom:14px;}
+  .about-panel p{font-size:15px;line-height:1.65;color:#5c5852;margin:0 0 12px;}
   .about-panel p strong{color:var(--charcoal);}
+  .about-panel .w{display:inline-block;}
   .check-list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;}
   .check-list li{font-size:14.5px;font-weight:600;color:var(--charcoal);display:flex;align-items:center;gap:10px;}
   .check-list li::before{
@@ -230,13 +231,12 @@
 
   /* ---- scene: connect ---- */
   .scene-connect .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-  .connect-photo{
-    position:absolute;top:50%;left:50%;width:min(40vw,320px);aspect-ratio:420/588;
-    transform:translate(-50%,-50%);
-    background-image:var(--photo-cutout);
-    background-size:contain;background-position:center bottom;background-repeat:no-repeat;z-index:1;
-  }
-  .contact-copy{position:relative;z-index:2;opacity:0;transform:translateY(24px);}
+  .contact-copy{position:relative;z-index:2;}
+  .c-line{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible;}
+  .c-line path{fill:none;stroke-linecap:round;}
+  .c-line .glow{stroke:rgba(232,130,93,.18);stroke-width:14;}
+  .c-line .main{stroke:var(--peach-3);stroke-width:3;}
+  .c-line .tip{fill:var(--peach-3);}
   .contact-copy h2{font-size:clamp(28px,5.4vw,52px);max-width:760px;margin:0 auto;}
   .contact-copy h2 em{font-style:normal;color:var(--peach-3);}
   .contact-copy .sub{color:var(--muted);font-size:16px;margin:20px auto 0;max-width:480px;}
@@ -259,24 +259,21 @@
   }
 
   @media (max-width:860px){
-    .about-panel{width:88vw;}
-    .vintage-photo-wrap{width:60vw;right:50%;transform:translate(50%,-58%);}
     .footer-panel{left:6%;right:6%;text-align:left;top:10%;}
   }
 
   .no-motion .scene{height:auto;min-height:100vh;padding:80px 24px;}
-  .no-motion .fly-word,.no-motion .vtext{display:none;}
-  .no-motion .orb-pos,.no-motion .tagline,.no-motion .vintage-photo-wrap,
+  .no-motion .fly-word,.no-motion .ab-word,.no-motion .c-line{display:none;}
+  .no-motion .orb-pos,.no-motion .tagline,
   .no-motion .about-panel,.no-motion .contact-copy,.no-motion .footer-panel,
   .no-motion .footer-name,.no-motion .footer-credit{opacity:1!important;transform:none!important;}
   .no-motion .orb-pos{position:relative;top:auto;left:auto;margin:0 auto;}
   .no-motion .tagline{position:relative;top:auto;left:auto;margin:40px auto 0;}
   .no-motion .proj-track{flex-wrap:wrap;width:auto;}
   .no-motion .proj-viewport{overflow:visible;}
-  .no-motion .vintage-card{display:none;}
-  .no-motion .vintage-photo-wrap{position:relative;top:auto;right:auto;margin:0 auto 30px;}
-  .no-motion .scene-vintage .wrap{flex-direction:column;}
-  .no-motion .connect-photo{position:relative;top:auto;left:auto;margin:0 auto 30px;}
+  .no-motion .ab-stage{position:relative;left:auto;top:auto;width:auto;height:var(--ph);margin:0 auto 24px;}
+  .no-motion .ab-photo{left:50%;top:50%;}
+  .no-motion .about-panel{position:relative;left:auto;top:auto;transform:none;width:auto;max-width:560px;margin:0 auto;}
   .no-motion .footer-name{position:relative;bottom:auto;left:auto;width:100%;text-align:center;margin:60px 0 0;}
   .no-motion .footer-credit{position:relative;bottom:auto;left:auto;width:100%;text-align:center;margin:16px 0 40px;}
   .no-motion .footer-media{position:relative;height:50vh;}
@@ -287,7 +284,7 @@
     position:fixed;top:0;left:0;right:0;height:72px;z-index:60;
     display:flex;align-items:center;justify-content:space-between;
     padding:0 clamp(16px,4vw,44px);
-    background:rgba(250,246,239,.78);
+    background:rgba(250,246,239,.94);
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid transparent;
     transition:border-color .3s ease, background .3s ease;
@@ -425,9 +422,10 @@
   .c-card{
     display:flex;flex-direction:column;gap:6px;padding:20px 22px;border-radius:20px;
     background:var(--cream-soft);border:1px solid var(--line);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    transition:transform .3s ease, box-shadow .3s ease;
   }
-  a.c-card:hover{border-color:var(--peach-3);transform:translateY(-3px);box-shadow:var(--shadow);}
+  .c-card{position:relative;z-index:2;}
+  .c-card:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(232,130,93,.30),0 8px 20px rgba(51,47,43,.10);}
   .c-card .c-label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach-3);}
   .c-card .c-value{font-size:15px;font-weight:700;color:var(--charcoal);overflow-wrap:anywhere;}
   @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
@@ -592,24 +590,14 @@
   </div>
 </section>
 
-<section class="scene scene-vintage" id="about">
+<section class="scene scene-about" id="about">
+  <div class="ab-stage" id="abStage">
+    <span class="ab-word ab-good" id="abGood">GOOD THINGS</span>
+    <div class="ab-photo vintage-filter" role="img" aria-label="Himani Vaghani"></div>
+    <span class="ab-word ab-take" id="abTake">TAKE TIME</span>
+  </div>
   <div class="wrap">
-    <div class="proj-card vintage-card">
-      <div class="proj-thumb" style="background:linear-gradient(135deg,#f7c2a6,#3f3ff3);"><span>DOC Q&amp;A</span></div>
-      <div class="proj-body">
-        <div class="proj-top"><h3>PDF Q&amp;A Assistant</h3><span class="badge">Public</span></div>
-        <p>A lightweight assistant that lets you ask natural-language questions against any PDF, powered by the OpenAI API.</p>
-        <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/doc_qa_assistant" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
-      </div>
-    </div>
-
-    <div class="vintage-photo-wrap">
-      <span class="vtext vtext-behind" id="vtextGood">GOOD DESIGN</span>
-      <div class="vintage-photo vintage-filter"></div>
-      <span class="vtext vtext-front" id="vtextTake">TAKE TIME</span>
-    </div>
-
-    <div class="about-panel">
+    <div class="about-panel" id="aboutPanel">
       <div class="kicker">About</div>
       <h2 class="section-title">I like software that has to be right, not just ship.</h2>
       <p>I'm <strong>Himani Vaghani</strong>, an independent engineer who builds at the intersection of <strong>AI and security</strong>. Most of what I ship exists because something else was quietly wrong — an AI hallucinating an import, a backend missing a rate limiter, an answer that sounded confident but wasn't.</p>
@@ -632,8 +620,8 @@
 </section>
 
 <section class="scene scene-connect" id="contact">
+  <svg class="c-line" id="cLine" aria-hidden="true"><path class="glow" id="cGlow"/><path class="main" id="cPath"/><circle class="tip" id="cTip" r="6"/></svg>
   <div class="wrap">
-    <div class="connect-photo vintage-filter"></div>
     <div class="contact-copy">
       <h2>Let's build something <em>that actually works.</em></h2>
       <p class="sub">Open to freelance builds, security audits for AI-heavy codebases, and interesting full-stack problems.</p>
@@ -691,7 +679,38 @@
 
   gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-  ScrollTrigger.matchMedia({
+  // split a block of content into visual lines (kicker, each wrapped line of text, each fact, each row of tags)
+  function buildLines(root){
+    const lines=[];
+    const wrapWords=el=>{
+      const walk=n=>{
+        [...n.childNodes].forEach(c=>{
+          if(c.nodeType===3){
+            const frag=document.createDocumentFragment();
+            c.textContent.split(/(\s+)/).forEach(t=>{
+              if(!t) return;
+              if(/^\s+$/.test(t)) frag.appendChild(document.createTextNode(t));
+              else{const s=document.createElement('span');s.className='w';s.textContent=t;frag.appendChild(s);}
+            });
+            c.replaceWith(frag);
+          } else if(c.nodeType===1) walk(c);
+        });
+      };
+      if(!el.querySelector('.w')) walk(el);
+      return [...el.querySelectorAll('.w')];
+    };
+    const byRow=els=>{const rows=[];let top=null;els.forEach(e=>{const t=e.offsetTop;if(top===null||Math.abs(t-top)>4){rows.push([]);top=t;}rows[rows.length-1].push(e);});return rows;};
+    [...root.children].forEach(el=>{
+      if(el.matches('h2,p')) byRow(wrapWords(el)).forEach(r=>lines.push(r));
+      else if(el.matches('ul')) [...el.children].forEach(li=>lines.push(li));
+      else if(el.matches('.tags')) byRow([...el.children]).forEach(r=>lines.push(r));
+      else lines.push(el);
+    });
+    return lines;
+  }
+
+  // wait for web fonts so line-splitting and measurements are right
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(()=>ScrollTrigger.matchMedia({
     "(prefers-reduced-motion: no-preference) and (min-width: 861px)": function(){
 
       // ---- scene: hero (flying words + flip-card photo + grow/park + tagline) ----
@@ -701,14 +720,15 @@
       });
       heroTl
         .to('#fly1', {motionPath:{path:[{x:0,y:0},{x:-140,y:-10},{x:-260,y:30},{x:-330,y:80}], curviness:1.4}, opacity:1, duration:1}, 0)
-        .to('#fly2', {motionPath:{path:[{x:0,y:0},{x:50,y:130},{x:10,y:260},{x:-60,y:360}], curviness:1.4}, opacity:1, duration:1}, 0)
+        .to('#fly2', {motionPath:{path:[{x:0,y:0},{x:70,y:140},{x:95,y:280},{x:85,y:400}], curviness:1.4}, opacity:1, duration:1}, 0)
         .to('#orbFlip', {rotationY:0, scaleX:1, duration:1, ease:'power1.inOut'}, 0)
         .to('.scroll-cue', {opacity:0, duration:.3}, 0)
         .to('#fly1, #fly2', {opacity:0, duration:.6}, 1)
         .to('#orbScale', {scale:1.9, duration:1}, 1)
         .to('#orbScale', {scale:.5, duration:1}, 2)
-        .to('#orbPos', {top:'20%', left:'80%', duration:1}, 2)
-        .to('.tagline', {opacity:1, scale:1, duration:.8}, 2.2);
+        .to('#orbPos', {top:'26%', left:'82%', duration:1}, 2)
+        .to('.tagline', {opacity:1, scale:1, duration:.8}, 2.85)
+        .to({}, {duration:.4});
 
       // ---- scene: projects (pinned horizontal pop-in, still clickable) ----
       const track = document.getElementById('projTrack');
@@ -729,27 +749,71 @@
         });
       });
 
-      // ---- scene: vintage (card -> photo, good design / take time, about reveal) ----
+      // ---- scene: about ----
+      // photo sits centred; GOOD THINGS slides in left→right behind it, TAKE TIME right→left in front,
+      // both settle beside the photo; then the whole group drifts left and the details reveal line by line
+      const stage=document.getElementById('abStage'), good=document.getElementById('abGood'), take=document.getElementById('abTake');
+      const groupW=()=>{ const ph=document.querySelector('.ab-photo').offsetHeight; return 2*(ph*.357+18+Math.max(good.offsetWidth,take.offsetWidth)); };
+      const groupScale=()=>Math.min(.66, (innerWidth*.5-56)/groupW());
+      const aboutLines=buildLines(document.getElementById('aboutPanel'));
       const vTl = gsap.timeline({
-        scrollTrigger:{ id:'about', trigger:'.scene-vintage', start:'top top', end:'+=280%', scrub:1, pin:true }
+        scrollTrigger:{ id:'about', trigger:'.scene-about', start:'top top', end:'+=420%', scrub:1, pin:true, invalidateOnRefresh:true }
       });
       vTl
-        .to('.vintage-card', {opacity:0, scale:.9, duration:.6}, 0)
-        .to('.vintage-photo-wrap', {opacity:1, duration:.6}, .1)
-        .fromTo('#vtextGood', {xPercent:130}, {xPercent:-130, ease:'none', duration:1.4}, .6)
-        .fromTo('#vtextTake', {xPercent:-130}, {xPercent:130, ease:'none', duration:1.4}, .6)
-        .to('#vtextGood, #vtextTake', {opacity:0, duration:.3}, 2.1)
-        .to('.about-panel', {opacity:1, x:0, duration:.7}, 2.2);
+        .fromTo(good, {x:()=>-(innerWidth*.5+good.offsetWidth+200)}, {x:0, duration:1.1, ease:'power2.out'}, .15)
+        .fromTo(take, {x:()=> innerWidth*.5+take.offsetWidth+200}, {x:0, duration:1.1, ease:'power2.out'}, .15)
+        .to({}, {duration:.35})
+        .to(stage, {x:()=>-(innerWidth*.5 - innerWidth*.26), scale:groupScale, duration:.9, ease:'power2.inOut'}, 1.6);
+      aboutLines.forEach((line,i)=>{
+        vTl.fromTo(line, {opacity:0, y:22}, {opacity:1, y:0, duration:.35, ease:'power2.out', stagger:.012}, 2.35 + i*.12);
+      });
+      vTl.to({}, {duration:.5});
 
       // ---- scene: connect (photo exits up, contact reveals) ----
       const cTl = gsap.timeline({
         scrollTrigger:{
-          id:'contact', trigger:'.scene-connect', start:'top top', end:'+=180%', scrub:1, pin:true,
+          id:'contact', trigger:'.scene-connect', start:'top top', end:'+=260%', scrub:1, pin:true,
         }
       });
+      // curvy line draws left→right behind the cards; each card pops in as the line reaches it
+      const cCards=gsap.utils.toArray('.c-card');
+      const path=document.getElementById('cPath'), glow=document.getElementById('cGlow'), tip=document.getElementById('cTip');
+      const drawLine=()=>{
+        const sec=document.querySelector('.scene-connect').getBoundingClientRect();
+        const pts=cCards.map(c=>{const r=c.getBoundingClientRect(); return [r.left-sec.left+r.width/2, r.top-sec.top+r.height/2];});
+        const cy=pts[0][1], W=sec.width;
+        const P=[[-30,cy+90],[pts[0][0]-W*.12,cy+40],...pts.map((p,i)=>[p[0],p[1]+(i%2?-26:26)]),[pts[pts.length-1][0]+W*.12,cy-40],[W+30,cy-80]];
+        let d=`M${P[0][0]},${P[0][1]}`;
+        for(let i=0;i<P.length-1;i++){
+          const p0=P[Math.max(i-1,0)],p1=P[i],p2=P[i+1],p3=P[Math.min(i+2,P.length-1)];
+          d+=` C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`;
+        }
+        path.setAttribute('d',d); glow.setAttribute('d',d);
+        const L=path.getTotalLength();
+        [path,glow].forEach(p=>{p.style.strokeDasharray=L; p.style.strokeDashoffset=L;});
+        return {L, W, xs:pts.map(p=>p[0])};
+      };
+      let geo=drawLine();
+      const lineState={p:0};
+      const paint=()=>{
+        const off=geo.L*(1-lineState.p);
+        path.style.strokeDashoffset=off; glow.style.strokeDashoffset=off;
+        const pt=path.getPointAtLength(geo.L*lineState.p);
+        tip.setAttribute('cx',pt.x); tip.setAttribute('cy',pt.y);
+        tip.style.opacity=(lineState.p>0.002 && lineState.p<0.998)?1:0;
+      };
+      ScrollTrigger.addEventListener('refreshInit',()=>{ geo=drawLine(); paint(); });
+      const LINE=1.8, LS=.55;
       cTl
-        .to('.connect-photo', {y:'-60vh', opacity:0, duration:1}, 0)
-        .to('.contact-copy', {opacity:1, y:0, duration:.8}, .3);
+        .from('.contact-copy h2', {opacity:0, y:30, duration:.5}, 0)
+        .from('.contact-copy .sub', {opacity:0, y:20, duration:.4}, .2)
+        .to(lineState, {p:1, duration:LINE, ease:'none', onUpdate:paint}, LS);
+      cCards.forEach((c,i)=>{
+        const at=LS + LINE*Math.min(Math.max((geo.xs[i]+30)/(geo.W+60),0),1) - .18;
+        cTl.from(c, {opacity:0, y:46, scale:.86, duration:.4, ease:'back.out(1.6)'}, at);
+      });
+      cTl.from('.contact-copy .cta-row', {opacity:0, y:20, duration:.4}, LS+LINE+.05)
+         .to({}, {duration:.4});
 
       // ---- scene: footer (video finale, socials/skills panel, name outro) ----
       const fTl = gsap.timeline({
@@ -765,7 +829,7 @@
     "(prefers-reduced-motion: reduce), (max-width: 860px)": function(){
       document.body.classList.add('no-motion');
     }
-  });
+  }));
 
   /* ================= live-site links =================
      Paste a project's live URL here and it gets a "Live site" button,
