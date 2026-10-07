@@ -62,57 +62,8 @@
 
   section{position:relative;z-index:1;}
 
-  /* nav */
-  .pill-nav{
-    position:fixed;
-    bottom:28px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:50;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    background:rgba(255,253,249,0.75);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(51,47,43,0.08);
-    border-radius:999px;
-    padding:6px;
-    box-shadow:0 12px 40px rgba(51,47,43,0.14);
-  }
-  .pill-nav a{
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:600;
-    color:var(--charcoal);
-    transition:background .25s ease, color .25s ease;
-    white-space:nowrap;
-  }
-  .pill-nav a:hover{background:rgba(63,63,243,0.08);}
-  .pill-nav .logo{
-    width:36px;height:36px;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--blue);
-    border-radius:11px;
-    color:#fff;font-weight:800;font-size:15px;
-    transform:rotate(-8deg);
-    font-family:'Baloo 2',sans-serif;
-  }
-
   .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
 
-  /* header row */
-  header.top{
-    padding:34px 0 0;
-    display:flex;justify-content:center;
-  }
-  .brand{
-    font-size:15px;font-weight:700;color:var(--muted);
-    letter-spacing:.02em;
-  }
-  .brand b{color:var(--charcoal);}
-  .brand .dot{color:var(--peach-3);margin:0 2px;}
 
   :root{
     --photo-cutout: url("assets/himani-bg.webp");
@@ -241,7 +192,7 @@
   .proj-foot .link{color:var(--blue);display:flex;align-items:center;gap:6px;}
   a.proj-card:hover .proj-foot .link{text-decoration:underline;}
 
-  .proj-thumb.has-shot{height:220px;background:#1d1b19;overflow:hidden;}
+  .proj-thumb.zz-old{height:220px;background:#1d1b19;overflow:hidden;}
   .proj-thumb.has-shot::after{background:linear-gradient(180deg,transparent 70%,rgba(0,0,0,.18));}
   .proj-thumb.has-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:opacity .5s ease,transform .6s ease;}
   .proj-thumb.has-shot img.alt{opacity:0;}
@@ -308,7 +259,6 @@
   }
 
   @media (max-width:860px){
-    .pill-nav a{padding:9px 13px;font-size:13px;}
     .about-panel{width:88vw;}
     .vintage-photo-wrap{width:60vw;right:50%;transform:translate(50%,-58%);}
     .footer-panel{left:6%;right:6%;text-align:left;top:10%;}
@@ -332,85 +282,187 @@
   .no-motion .footer-media{position:relative;height:50vh;}
   .no-motion .chrome{opacity:1;pointer-events:auto;}
 
-  /* intro overlay */
-  body.intro-lock{overflow:hidden;height:100vh;}
-  #intro{
-    position:fixed;inset:0;z-index:999;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:18px;
-    background:var(--cream);
-    animation:intro-out .7s cubic-bezier(.65,0,.35,1) 1.7s forwards;
+  /* ===== header ===== */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;height:72px;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(16px,4vw,44px);
+    background:rgba(250,246,239,.78);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
   }
-  .intro-mark{
-    width:72px;height:72px;
+  .site-header.scrolled{border-bottom-color:var(--line);}
+  .hb{display:flex;align-items:center;gap:11px;}
+  .hb-mark{
+    width:34px;height:34px;flex:0 0 auto;
     display:flex;align-items:center;justify-content:center;
-    background:var(--blue);
-    border-radius:20px;
-    color:#fff;font-weight:800;font-size:32px;
-    font-family:'Baloo 2','Figtree',sans-serif;
-    animation:intro-pop .9s cubic-bezier(.34,1.56,.64,1) both;
+    background:var(--blue);border-radius:10px;transform:rotate(-8deg);
+    color:#fff;font:800 16px/1 'Baloo 2',sans-serif;
   }
-  .intro-name{
-    font-family:'Baloo 2','Figtree',sans-serif;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    color:var(--muted);
-    opacity:0;
-    animation:intro-fade .6s ease .5s forwards;
+  .hb-name,.ld-name{
+    font-family:'Baloo 2','Figtree',sans-serif;font-weight:700;
+    letter-spacing:-.01em;line-height:1;color:var(--charcoal);white-space:nowrap;
   }
-  .intro-bar{
-    width:120px;height:3px;
-    border-radius:999px;
-    background:rgba(51,47,43,0.1);
-    overflow:hidden;
+  .hb-name{font-size:22px;padding-top:3px;}
+  .site-nav{
+    display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;
+    background:rgba(255,253,249,.8);border:1px solid var(--line);
   }
-  .intro-bar span{
-    display:block;height:100%;width:0%;
-    background:var(--peach-3);
-    border-radius:999px;
-    animation:intro-load 1s ease .15s forwards;
+  .site-nav a{
+    padding:9px 17px;border-radius:999px;font-size:14px;font-weight:600;color:var(--charcoal);
+    transition:background .25s ease,color .25s ease;
   }
-  @keyframes intro-pop{
-    0%{transform:scale(.4) rotate(-25deg);opacity:0;}
-    60%{transform:scale(1.08) rotate(4deg);opacity:1;}
-    100%{transform:scale(1) rotate(-8deg);opacity:1;}
+  .site-nav a:hover{background:rgba(63,63,243,.08);}
+  .site-nav a.active{background:var(--charcoal);color:#fff;}
+  .site-nav .nav-gh{padding:8px 10px;display:flex;}
+  body.loading .site-header{background:transparent;}
+  body.loading .hb-mark,body.loading .hb-name,body.loading .site-nav{opacity:0;}
+  @media (max-width:640px){
+    .site-header{height:62px;}
+    .hb-name{font-size:18px;}
+    .hb-mark{width:30px;height:30px;font-size:14px;}
+    .site-nav a{padding:8px 11px;font-size:13px;}
+    .site-nav .nav-gh{display:none;}
   }
-  @keyframes intro-fade{to{opacity:1;}}
-  @keyframes intro-load{to{width:100%;}}
-  @keyframes intro-out{
-    to{opacity:0;transform:translateY(-6%);pointer-events:none;visibility:hidden;}
+  @media (max-width:420px){ .hb-mark{display:none;} }
+
+  /* ===== loader ===== */
+  body.loading{overflow:hidden;height:100vh;}
+  #loader{
+    position:fixed;inset:0;z-index:100;background:var(--cream);
+    display:flex;align-items:center;justify-content:center;
   }
-  @media (prefers-reduced-motion: reduce){
-    #intro{animation-duration:.3s;animation-delay:.4s;}
-    .intro-mark,.intro-name,.intro-bar span{animation:none;opacity:1;width:100%;transform:scale(1) rotate(-8deg);}
+  .ld-ring{position:relative;width:150px;height:150px;}
+  .ld-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .ld-ring circle{fill:none;stroke-width:3;}
+  .ld-ring .track{stroke:rgba(51,47,43,.1);}
+  .ld-ring .prog{stroke:var(--peach-3);stroke-linecap:round;}
+  .ld-count{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font:700 34px/1 'Baloo 2',sans-serif;color:var(--charcoal);font-variant-numeric:tabular-nums;
   }
+  .ld-count small{font-size:15px;color:var(--muted);margin-left:2px;margin-top:8px;}
+  .ld-name{
+    position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:clamp(46px,9vw,124px);visibility:hidden;z-index:101;
+  }
+  .ld-name .ch{display:inline-block;}
+
+  /* ===== project galleries ===== */
+  .proj-thumb.gallery{height:230px;background:#1d1b19;overflow:hidden;user-select:none;touch-action:pan-y;}
+  .proj-thumb.gallery::after{
+    background:linear-gradient(180deg,transparent 62%,rgba(20,18,16,.35));z-index:1;pointer-events:none;
+  }
+  .gallery .shot{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:top center;
+    opacity:0;transform:scale(1.05);
+    transition:opacity .6s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .gallery .shot.on{opacity:1;transform:scale(1);}
+  .gallery.has-live{cursor:pointer;}
+  .dots{
+    position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:2;
+    display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;
+    background:rgba(20,18,16,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .dot{
+    width:7px;height:7px;padding:0;border:0;border-radius:999px;cursor:pointer;
+    background:rgba(255,255,255,.55);transition:width .35s ease, background .35s ease;
+  }
+  .dot.on{width:22px;background:#fff;}
+  .dot:hover{background:#fff;}
+  .g-nav{
+    position:absolute;top:50%;z-index:2;width:36px;height:36px;margin-top:-18px;
+    border:0;border-radius:50%;cursor:pointer;
+    background:rgba(255,253,249,.92);color:var(--charcoal);
+    font:600 24px/1 'Figtree',sans-serif;padding-bottom:3px;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+    opacity:0;transition:opacity .25s ease, transform .25s ease;
+  }
+  .g-nav.prev{left:12px;transform:translateX(-6px);}
+  .g-nav.next{right:12px;transform:translateX(6px);}
+  .proj-card:hover .g-nav,.g-nav:focus-visible{opacity:1;transform:none;}
+  @media (hover:none){ .g-nav{display:none;} }
+  .gallery .shot-count,.gallery .live-chip{position:absolute;}
+  .shot-count{
+    position:absolute;top:12px;right:12px;z-index:2;
+    font:700 11px/1 'Figtree',sans-serif;letter-spacing:.04em;color:#fff;
+    padding:6px 9px;border-radius:999px;background:rgba(20,18,16,.45);
+  }
+  .live-chip{
+    position:absolute;top:12px;left:12px;z-index:2;
+    font:700 11px/1 'Figtree',sans-serif;color:var(--charcoal);
+    padding:7px 10px;border-radius:999px;background:rgba(255,253,249,.92);
+  }
+
+  /* card links */
+  .proj-foot .links{display:flex;align-items:center;gap:8px;}
+  .gh-link{
+    width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(51,47,43,.07);color:var(--charcoal);
+    transition:background .25s ease,color .25s ease,transform .25s ease;
+  }
+  .gh-link:hover{background:var(--charcoal);color:#fff;transform:translateY(-2px);}
+  .live-link{
+    padding:9px 15px;border-radius:999px;background:var(--blue);color:#fff;
+    font-size:12.5px;font-weight:700;transition:background .25s ease;
+  }
+  .live-link:hover{background:var(--blue-deep);}
+
+  /* about facts */
+  .facts{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:9px;}
+  .facts li{display:flex;gap:10px;align-items:baseline;font-size:14.5px;color:#5c5852;}
+  .facts b{color:var(--charcoal);font-weight:700;min-width:84px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+
+  /* contact cards */
+  .contact-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;
+    margin:36px auto 0;max-width:780px;text-align:left;
+  }
+  .c-card{
+    display:flex;flex-direction:column;gap:6px;padding:20px 22px;border-radius:20px;
+    background:var(--cream-soft);border:1px solid var(--line);
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  a.c-card:hover{border-color:var(--peach-3);transform:translateY(-3px);box-shadow:var(--shadow);}
+  .c-card .c-label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach-3);}
+  .c-card .c-value{font-size:15px;font-weight:700;color:var(--charcoal);overflow-wrap:anywhere;}
+  @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
+
+  .no-motion .scene{padding-top:110px;}
+  .no-motion .scroll-cue{display:none;}
+  @media (prefers-reduced-motion: reduce){ .gallery .shot{transition:opacity .2s ease;transform:none;} }
 </style>
 
-<div id="intro" aria-hidden="true">
-  <div class="intro-mark">H</div>
-  <div class="intro-name">Himani Vaghani</div>
-  <div class="intro-bar"><span></span></div>
+<div id="loader" aria-hidden="true">
+  <div class="ld-ring" id="ldRing">
+    <svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="54"/><circle class="prog" id="ldProg" cx="60" cy="60" r="54" stroke-dasharray="339.29" stroke-dashoffset="339.29"/></svg>
+    <span class="ld-count"><span id="ldCount">0</span><small>%</small></span>
+  </div>
 </div>
+<div class="ld-name" id="ldName" aria-hidden="true">Himani Vaghani</div>
 
 <div class="bg-blob blob-a"></div>
 <div class="bg-blob blob-b"></div>
 
-<nav class="pill-nav chrome">
-  <a href="#about">About</a>
-  <span class="logo">H</span>
-  <a href="#work">Work</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<header class="top chrome">
-  <div class="brand"><b>Himani</b><span class="dot">•</span><b>Vaghani</b></div>
+<header class="site-header" id="siteHeader">
+  <a class="hb" href="#top" data-go="top" aria-label="Himani Vaghani, back to top">
+    <span class="hb-mark">H</span><span class="hb-name" id="hbName">Himani Vaghani</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#about" data-go="about">About</a>
+    <a href="#work" data-go="work">Work</a>
+    <a href="#contact" data-go="contact">Contact</a>
+    <a class="nav-gh" href="https://github.com/Himani51" target="_blank" rel="noopener" aria-label="GitHub profile" title="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </nav>
 </header>
 
 <main class="story">
 
-<section class="scene scene-hero">
+<section class="scene scene-hero" id="top">
   <div class="wrap">
     <span class="fly-word" id="fly1">AI &amp; Security Tooling Engineer</span>
     <span class="fly-word" id="fly2">Full-Stack Builder, Independent</span>
@@ -445,95 +497,95 @@
     <div class="proj-viewport">
       <div class="proj-track" id="projTrack">
 
-        <div class="proj-card">
-          <div class="proj-thumb has-shot"><img src="assets/projects/webshield-1-inspector.webp" alt="WebShield screenshot" loading="lazy"><img class="alt" src="assets/projects/webshield-2-remediation.webp" alt="WebShield second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="webshield">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/webshield-1-inspector.webp" alt="WebShield screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/webshield-2-remediation.webp" alt="WebShield screenshot 2" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>WebShield</h3><span class="badge priv">Private</span></div>
             <p>A passive security posture scanner — checks a domain's HTTP security headers, TLS certificate, and SPF/DMARC records, then turns the result into a plain-English score with ready-to-paste fix snippets. No agent installed, nothing run on the target.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>HTML · MIT</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>HTML · MIT</span><span class="links"></span></div>
           </div>
         </div>
 
-        <a class="proj-card" href="https://github.com/Himani51/DepFirewall" target="_blank" rel="noopener">
-          <div class="proj-thumb has-shot"><img src="assets/projects/depfirewall-1-landing.webp" alt="DepFirewall screenshot" loading="lazy"><img class="alt" src="assets/projects/depfirewall-2-scan-results.webp" alt="DepFirewall second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="depfirewall">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/depfirewall-1-landing.webp" alt="DepFirewall screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/depfirewall-2-scan-results.webp" alt="DepFirewall screenshot 2" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>DepFirewall</h3><span class="badge">Public</span></div>
             <p>Static analysis engine that catches hallucinated imports, missing security middleware, and leaked secrets in TypeScript/JS codebases before they hit CI.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><span class="link">View repo →</span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/DepFirewall" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
           </div>
-        </a>
+        </div>
 
-        <a class="proj-card" href="https://github.com/Himani51/Thought-Leak-Auditor" target="_blank" rel="noopener">
-          <div class="proj-thumb has-shot"><img src="assets/projects/thought-leak-auditor-1-landing.webp" alt="Thought Leak Auditor screenshot" loading="lazy"><img class="alt" src="assets/projects/thought-leak-auditor-2-app.webp" alt="Thought Leak Auditor second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="thoughtleak">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/thought-leak-auditor-1-landing.webp" alt="Thought Leak Auditor screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/thought-leak-auditor-2-app.webp" alt="Thought Leak Auditor screenshot 2" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>Thought Leak Auditor</h3><span class="badge">Public</span></div>
             <p>Enterprise-grade auditor that scores AI-generated answers for logical gaps and hallucination risk through a dual-critic (strict/lenient) engine, then rewrites the answer to close the gaps.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><span class="link">View repo →</span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · MIT</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/Thought-Leak-Auditor" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
           </div>
-        </a>
+        </div>
 
-        <div class="proj-card">
+        <div class="proj-card" data-key="brewclaude">
           <div class="proj-thumb" style="background:linear-gradient(135deg,#2323c4,#3f3ff3);"><span>BREWCLAUDE</span></div>
           <div class="proj-body">
             <div class="proj-top"><h3>BrewClaude</h3><span class="badge priv">Private</span></div>
             <p>Voice-first AI assistant for Android + iOS on one Capacitor + React codebase — hands-free chat with Claude, on-device memory (SQLite + SQLCipher), and device automation.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span class="links"></span></div>
           </div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-thumb has-shot"><img src="assets/projects/jobflow-ai-landing.webp" alt="JobFlow AI screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="jobflowai">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/jobflow-ai-landing.webp" alt="JobFlow AI screenshot 1" loading="lazy" draggable="false"></div>
           <div class="proj-body">
             <div class="proj-top"><h3>JobFlow AI</h3><span class="badge priv">Private</span></div>
             <p>A GDPR-compliant, agentic career platform — resume tailoring, auto-apply, and job matching, built on Supabase RLS, HttpOnly auth, and pgcrypto-encrypted PII.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span class="links"></span></div>
           </div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-thumb has-shot"><img src="assets/projects/promptfry-1-home.webp" alt="PromptFry screenshot" loading="lazy"><img class="alt" src="assets/projects/promptfry-2-browse.webp" alt="PromptFry second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="promptfry">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/promptfry-1-home.webp" alt="PromptFry screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/promptfry-2-browse.webp" alt="PromptFry screenshot 2" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>PromptFry</h3><span class="badge priv">Private</span></div>
             <p>A prompt library with ready-to-use templates for ChatGPT, Claude, Midjourney, DALL-E and Runway, sorted by goal — plus a "Prompt Doctor" that fixes weak prompts, a personal vault and Stripe-powered Pro packs.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span class="links"></span></div>
           </div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-thumb has-shot"><img src="assets/projects/aegis-compliance-1-dashboard.webp" alt="Aegis CIL screenshot" loading="lazy"><img class="alt" src="assets/projects/aegis-compliance-2-risks.webp" alt="Aegis CIL second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="aegis">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/aegis-compliance-1-dashboard.webp" alt="Aegis CIL screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/aegis-compliance-2-risks.webp" alt="Aegis CIL screenshot 2" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>Aegis CIL</h3><span class="badge priv">Private</span></div>
             <p>A compliance-intelligence dashboard tracking control coverage across SOC 2, ISO 27001, GDPR and HIPAA, with an Auto-Fill Engine that maps evidence to controls and drafts security-questionnaire answers.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript</span><span class="links"></span></div>
           </div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-thumb has-shot"><img src="assets/projects/job-genius-1-dashboard.webp" alt="JobFlow n8n screenshot" loading="lazy"><img class="alt" src="assets/projects/job-genius-2-analytics.webp" alt="JobFlow n8n second screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="jobflown8n">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/job-genius-1-dashboard.webp" alt="JobFlow · n8n edition screenshot 1" loading="lazy" draggable="false"><img class="shot" src="assets/projects/job-genius-2-analytics.webp" alt="JobFlow · n8n edition screenshot 2" loading="lazy" draggable="false"><img class="shot" src="assets/projects/job-genius-3-n8n-integration.webp" alt="JobFlow · n8n edition screenshot 3" loading="lazy" draggable="false"><button class="g-nav prev" aria-label="Previous screenshot">&#8249;</button><button class="g-nav next" aria-label="Next screenshot">&#8250;</button><div class="dots"><button class="dot on" aria-label="Show screenshot 1"></button><button class="dot" aria-label="Show screenshot 2"></button><button class="dot" aria-label="Show screenshot 3"></button></div></div>
           <div class="proj-body">
             <div class="proj-top"><h3>JobFlow · n8n edition</h3><span class="badge priv">Private</span></div>
             <p>An earlier job-automation dashboard: n8n workflows find companies and roles, score matches with AI and send applications, while the app tracks every application and charts the results.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · n8n</span><span></span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>TypeScript · n8n</span><span class="links"></span></div>
           </div>
         </div>
 
-        <a class="proj-card" href="https://github.com/Himani51/Ai-Voice-Mood-Detector" target="_blank" rel="noopener">
-          <div class="proj-thumb has-shot"><img src="assets/projects/voice-mood-detector.webp" alt="AI Voice Mood Detector screenshot" loading="lazy"></div>
+        <div class="proj-card" data-key="voicemood">
+          <div class="proj-thumb gallery"><img class="shot on" src="assets/projects/voice-mood-detector.webp" alt="AI Voice Mood Detector screenshot 1" loading="lazy" draggable="false"></div>
           <div class="proj-body">
             <div class="proj-top"><h3>AI Voice Mood Detector</h3><span class="badge">Public</span></div>
             <p>End-to-end voice emotion classifier — dataset prep, feature extraction, training pipeline, and a Streamlit app that predicts emotion from a .wav upload.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="link">View repo →</span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/Ai-Voice-Mood-Detector" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
           </div>
-        </a>
+        </div>
 
-        <a class="proj-card" href="https://github.com/Himani51/doc_qa_assistant" target="_blank" rel="noopener">
+        <div class="proj-card" data-key="docqa">
           <div class="proj-thumb" style="background:linear-gradient(135deg,#f7c2a6,#3f3ff3);"><span>DOC Q&amp;A</span></div>
           <div class="proj-body">
             <div class="proj-top"><h3>PDF Q&amp;A Assistant</h3><span class="badge">Public</span></div>
             <p>A lightweight assistant that lets you ask natural-language questions against any PDF, powered by the OpenAI API.</p>
-            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="link">View repo →</span></div>
+            <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/doc_qa_assistant" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
           </div>
-        </a>
+        </div>
 
       </div>
     </div>
@@ -547,7 +599,7 @@
       <div class="proj-body">
         <div class="proj-top"><h3>PDF Q&amp;A Assistant</h3><span class="badge">Public</span></div>
         <p>A lightweight assistant that lets you ask natural-language questions against any PDF, powered by the OpenAI API.</p>
-        <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="link">View repo →</span></div>
+        <div class="proj-foot"><span class="lang"><i class="lang-dot"></i>Python</span><span class="links"><a class="gh-link" href="https://github.com/Himani51/doc_qa_assistant" target="_blank" rel="noopener" aria-label="View code on GitHub" title="View code on GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></span></div>
       </div>
     </div>
 
@@ -561,11 +613,11 @@
       <div class="kicker">About</div>
       <h2 class="section-title">I like software that has to be right, not just ship.</h2>
       <p>I'm <strong>Himani Vaghani</strong>, an independent engineer who builds at the intersection of <strong>AI and security</strong>. Most of what I ship exists because something else was quietly wrong — an AI hallucinating an import, a backend missing a rate limiter, an answer that sounded confident but wasn't.</p>
-      <p>My projects tend to fall into two buckets: <strong>tools that audit AI output</strong> (DepFirewall, Thought Leak Auditor, WebShield) and <strong>full products built with AI in the loop</strong> (BrewClaude, JobFlow AI, Prompt Hub). Both need the same instinct — care about the craft, and don't trust the happy path.</p>
-      <ul class="check-list">
-        <li>Ships production code, not just demos</li>
-        <li>Security-first mindset on everything AI-adjacent</li>
-        <li>Comfortable end-to-end: frontend, backend, infra</li>
+      <p>My projects tend to fall into two buckets: <strong>tools that audit AI output</strong> (DepFirewall, Thought Leak Auditor, WebShield) and <strong>full products built with AI in the loop</strong> (BrewClaude, JobFlow AI, PromptFry). Both need the same instinct — care about the craft, and don't trust the happy path.</p>
+      <ul class="facts">
+        <li><b>Based in</b>Chemnitz, Germany</li>
+        <li><b>Study</b>M.Sc. Embedded Systems, TU Chemnitz</li>
+        <li><b>Work</b>Freelance AI/NLP engineer since 2021 · ex DeltaVision GmbH</li>
       </ul>
       <div class="tags">
         <span class="tag">TypeScript / React</span>
@@ -585,9 +637,14 @@
     <div class="contact-copy">
       <h2>Let's build something <em>that actually works.</em></h2>
       <p class="sub">Open to freelance builds, security audits for AI-heavy codebases, and interesting full-stack problems.</p>
+      <div class="contact-grid">
+        <a class="c-card" href="mailto:vaghanihimani@gmail.com"><span class="c-label">Email</span><span class="c-value">vaghanihimani@gmail.com</span></a>
+        <a class="c-card" href="https://github.com/Himani51" target="_blank" rel="noopener"><span class="c-label">GitHub</span><span class="c-value">github.com/Himani51</span></a>
+        <div class="c-card"><span class="c-label">Location</span><span class="c-value">Chemnitz, Germany · open to remote</span></div>
+      </div>
       <div class="cta-row">
         <a class="btn primary" href="mailto:vaghanihimani@gmail.com">Email me →</a>
-        <a class="btn ghost" href="https://github.com/Himani51" target="_blank" rel="noopener">See all repos</a>
+        <a class="btn ghost" href="#work" data-go="work">See my work</a>
       </div>
     </div>
   </div>
@@ -614,19 +671,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // intro overlay: lock scroll while it plays, clean it up once it's done
-  const intro = document.getElementById('intro');
-  if(intro){
-    document.body.classList.add('intro-lock');
-    const dismissIntro = ()=>{
-      document.body.classList.remove('intro-lock');
-      intro.remove();
-      if(window.ScrollTrigger) ScrollTrigger.refresh();
-    };
-    intro.addEventListener('animationend', (e)=>{ if(e.target === intro) dismissIntro(); });
-    setTimeout(dismissIntro, 3000);
-  }
+  document.body.classList.add('loading');
 
   // subtle parallax on the orb shapes following pointer
   const stage = document.querySelector('.orb-stage');
@@ -648,12 +693,11 @@
 
   ScrollTrigger.matchMedia({
     "(prefers-reduced-motion: no-preference) and (min-width: 861px)": function(){
-      const chromeEls = document.querySelectorAll('.chrome');
 
       // ---- scene: hero (flying words + flip-card photo + grow/park + tagline) ----
       gsap.set('#orbFlip', {rotationY:78, scaleX:.15, transformPerspective:1400});
       const heroTl = gsap.timeline({
-        scrollTrigger:{ trigger:'.scene-hero', start:'top top', end:'+=300%', scrub:1, pin:true }
+        scrollTrigger:{ id:'hero', trigger:'.scene-hero', start:'top top', end:'+=300%', scrub:1, pin:true }
       });
       heroTl
         .to('#fly1', {motionPath:{path:[{x:0,y:0},{x:-140,y:-10},{x:-260,y:30},{x:-330,y:80}], curviness:1.4}, opacity:1, duration:1}, 0)
@@ -674,7 +718,7 @@
       const projTween = gsap.to(track, {
         x: ()=> -getScrollAmount(), ease:'none',
         scrollTrigger:{
-          trigger:'.scene-projects', start:'top top', end:()=>'+='+getScrollAmount(),
+          id:'work', trigger:'.scene-projects', start:'top top', end:()=>'+='+getScrollAmount(),
           scrub:1, pin:true, invalidateOnRefresh:true
         }
       });
@@ -687,7 +731,7 @@
 
       // ---- scene: vintage (card -> photo, good design / take time, about reveal) ----
       const vTl = gsap.timeline({
-        scrollTrigger:{ trigger:'.scene-vintage', start:'top top', end:'+=280%', scrub:1, pin:true }
+        scrollTrigger:{ id:'about', trigger:'.scene-vintage', start:'top top', end:'+=280%', scrub:1, pin:true }
       });
       vTl
         .to('.vintage-card', {opacity:0, scale:.9, duration:.6}, 0)
@@ -697,12 +741,10 @@
         .to('#vtextGood, #vtextTake', {opacity:0, duration:.3}, 2.1)
         .to('.about-panel', {opacity:1, x:0, duration:.7}, 2.2);
 
-      // ---- scene: connect (photo exits up, contact reveals, nav fades in) ----
+      // ---- scene: connect (photo exits up, contact reveals) ----
       const cTl = gsap.timeline({
         scrollTrigger:{
-          trigger:'.scene-connect', start:'top top', end:'+=180%', scrub:1, pin:true,
-          onEnter:()=>chromeEls.forEach(el=>el.classList.add('show')),
-          onLeaveBack:()=>chromeEls.forEach(el=>el.classList.remove('show'))
+          id:'contact', trigger:'.scene-connect', start:'top top', end:'+=180%', scrub:1, pin:true,
         }
       });
       cTl
@@ -722,9 +764,145 @@
     },
     "(prefers-reduced-motion: reduce), (max-width: 860px)": function(){
       document.body.classList.add('no-motion');
-      document.querySelectorAll('.chrome').forEach(el=>el.classList.add('show'));
     }
   });
+
+  /* ================= live-site links =================
+     Paste a project's live URL here and it gets a "Live site" button,
+     and clicking its screenshots opens the site. */
+  const LIVE = {
+    webshield:  '',
+    depfirewall:'',
+    thoughtleak:'',
+    brewclaude: '',
+    jobflowai:  '',
+    promptfry:  '',
+    aegis:      '',
+    jobflown8n: '',
+    voicemood:  '',
+    docqa:      ''
+  };
+  document.querySelectorAll('.proj-card[data-key]').forEach(card=>{
+    const url = LIVE[card.dataset.key];
+    if(!url) return;
+    const links = card.querySelector('.links');
+    const a = document.createElement('a');
+    a.className='live-link'; a.href=url; a.target='_blank'; a.rel='noopener'; a.textContent='Live site ↗';
+    links.prepend(a);
+    const g = card.querySelector('.gallery');
+    if(g){
+      g.classList.add('has-live');
+      const chip=document.createElement('span'); chip.className='live-chip'; chip.textContent='● Live'; g.appendChild(chip);
+      g.addEventListener('click', e=>{ if(!e.target.closest('button') && !g.dataset.swiped) window.open(url,'_blank','noopener'); });
+    }
+  });
+
+  /* ================= screenshot galleries ================= */
+  document.querySelectorAll('.gallery').forEach(g=>{
+    const shots=[...g.querySelectorAll('.shot')];
+    if(shots.length<2) return;
+    const dots=[...g.querySelectorAll('.dot')];
+    const count=document.createElement('span'); count.className='shot-count'; g.appendChild(count);
+    let i=0;
+    const show=n=>{
+      i=(n+shots.length)%shots.length;
+      shots.forEach((s,k)=>s.classList.toggle('on',k===i));
+      dots.forEach((d,k)=>{d.classList.toggle('on',k===i); d.setAttribute('aria-current',k===i?'true':'false');});
+      count.textContent=(i+1)+' / '+shots.length;
+    };
+    show(0);
+    dots.forEach((d,k)=>d.addEventListener('click',e=>{e.stopPropagation();show(k);}));
+    g.querySelector('.prev').addEventListener('click',e=>{e.stopPropagation();show(i-1);});
+    g.querySelector('.next').addEventListener('click',e=>{e.stopPropagation();show(i+1);});
+    let x0=null;
+    g.addEventListener('pointerdown',e=>{x0=e.clientX; delete g.dataset.swiped;});
+    g.addEventListener('pointerup',e=>{
+      if(x0===null) return; const dx=e.clientX-x0; x0=null;
+      if(Math.abs(dx)>40){ g.dataset.swiped='1'; show(dx<0?i+1:i-1); setTimeout(()=>delete g.dataset.swiped,50); }
+    });
+  });
+
+  /* ================= header nav ================= */
+  const header=document.getElementById('siteHeader');
+  const navLinks=[...document.querySelectorAll('.site-nav a[data-go]')];
+  const headerH=()=>header.offsetHeight;
+  // where each section is "fully revealed" (pinned scenes animate in, so land at the end of the reveal)
+  const targetFor=(key)=>{
+    if(key==='top') return 0;
+    const st = window.ScrollTrigger && ScrollTrigger.getById(key);
+    if(st && !document.body.classList.contains('no-motion')){
+      if(key==='work') return st.start + 2;
+      return st.end - 2;
+    }
+    const el=document.getElementById(key);
+    return el ? el.getBoundingClientRect().top + window.scrollY - headerH() : 0;
+  };
+  document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();
+    window.scrollTo({top:targetFor(a.dataset.go),behavior:'smooth'});
+  }));
+  const setActive=()=>{
+    const y=window.scrollY+window.innerHeight*0.4;
+    let cur=null;
+    ['work','about','contact'].forEach(k=>{
+      const st=window.ScrollTrigger && ScrollTrigger.getById(k);
+      const el=document.getElementById(k);
+      const top = (st && !document.body.classList.contains('no-motion')) ? st.start : (el.getBoundingClientRect().top+window.scrollY-headerH());
+      if(y>=top) cur=k;
+    });
+    navLinks.forEach(a=>a.classList.toggle('active',a.dataset.go===cur));
+    header.classList.toggle('scrolled',window.scrollY>10);
+  };
+  window.addEventListener('scroll',setActive,{passive:true});
+
+  /* ================= loader: 0 → 100 ring, then name docks into header ================= */
+  (function(){
+    const loader=document.getElementById('loader');
+    const ldName=document.getElementById('ldName');
+    const hbName=document.getElementById('hbName');
+    const finish=()=>{
+      document.body.classList.remove('loading');
+      loader && loader.remove(); ldName && ldName.remove();
+      hbName.style.visibility='';
+      if(window.ScrollTrigger) ScrollTrigger.refresh();
+      setActive();
+    };
+    if(!window.gsap){ finish(); return; }
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+    window.scrollTo(0,0);
+    hbName.style.visibility='hidden';
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const C=339.29, prog=document.getElementById('ldProg'), num=document.getElementById('ldCount');
+    const c={v:0};
+    // split name into letters for the reveal
+    ldName.innerHTML=[...ldName.textContent].map(ch=>ch===' '?' ':'<span class="ch">'+ch+'</span>').join('');
+    const chars=ldName.querySelectorAll('.ch');
+
+    const tl=gsap.timeline();
+    tl.to(c,{v:100,duration:reduce?.5:2.2,ease:'power2.inOut',onUpdate:()=>{
+        num.textContent=Math.round(c.v);
+        prog.setAttribute('stroke-dashoffset',(C*(1-c.v/100)).toFixed(2));
+      }})
+      .to('#ldRing',{scale:1.08,duration:.18,ease:'power1.out'})
+      .to('#ldRing',{scale:.6,opacity:0,duration:.38,ease:'power2.in'})
+      .add(()=>{ ldName.style.visibility='visible'; })
+      .from(chars,{yPercent:110,opacity:0,duration:reduce?.01:.6,stagger:.035,ease:'power3.out'})
+      .to({}, {duration:reduce?.1:.45})
+      .add(()=>{
+        // FLIP: measure the big name and the header slot, then fly + shrink into place
+        const from=ldName.getBoundingClientRect(), to=hbName.getBoundingClientRect();
+        const s=parseFloat(getComputedStyle(hbName).fontSize)/parseFloat(getComputedStyle(ldName).fontSize);
+        gsap.set(ldName,{left:from.left,top:from.top,xPercent:0,yPercent:0,x:0,y:0,transformOrigin:'0 0'});
+        const fly=gsap.timeline({onComplete:finish});
+        fly.to(ldName,{x:to.left-from.left,y:(to.bottom-from.height*s)-from.top,scale:s,duration:reduce?.01:1.05,ease:'expo.inOut'},0)
+           .to(loader,{opacity:0,duration:.8,ease:'power2.inOut'},.25)
+           .add(()=>document.body.classList.remove('loading'),.55)
+           .fromTo('.hb-mark',{scale:0,rotate:-40},{scale:1,rotate:-8,duration:.6,ease:'back.out(2)'},.6)
+           .from('.site-nav a',{y:-14,opacity:0,duration:.45,stagger:.06,ease:'power2.out'},.65);
+      });
+    // safety net: never trap the visitor behind the loader
+    setTimeout(()=>{ if(document.getElementById('loader')) finish(); },9000);
+  })();
 </script>
 
 
